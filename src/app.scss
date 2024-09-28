@@ -30,6 +30,50 @@
   }
 }
 
+.nav-panel {
+  display: flex;
+  align-items: center;
+
+  .nav-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    border-radius: 15px;
+    background: $lightGrey;
+    padding: 7px;
+    position: relative;
+    margin-bottom: 32px;
+
+    .nav-item {
+      padding: 10px 16px;
+      border-radius: 15px;
+      position: relative;
+      cursor: pointer;
+      z-index: 2;
+
+      &.active {
+        color: $white;
+        cursor: default;
+      }
+    }
+
+    .nav-item-active {
+      position: absolute;
+      padding: 10px 16px;
+      background: $red;
+      border-radius: 15px;
+      box-shadow: 0px 4px 4px 0px rgba(139, 135, 129, 0.5);
+      transition: all 0.3s;
+
+      // Задается динамически
+      top: 7px;
+      left: 7px;
+      width: 65px;
+      height: 46px;
+    }
+  }
+}
+
 .wok-list {
   display: flex;
   flex-wrap: wrap;
@@ -117,8 +161,8 @@
 
     .counter {
       display: flex;
-      width: 100px;
-      height: 32px;
+      width: 130px;
+      height: 42px;
       background: $lightGrey;
       border-radius: 6px;
       overflow: hidden;
@@ -126,11 +170,13 @@
 
       .dec-btn,
       .inc-btn {
-        width: 30px;
+        width: 40px;
         text-align: center;
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
+        user-select: none;
         transition: all 0.2s;
 
         &:hover {
@@ -142,7 +188,7 @@
       .count {
         flex-grow: 1;
         text-align: center;
-        line-height: 32px;
+        line-height: 42px;
       }
     }
 
