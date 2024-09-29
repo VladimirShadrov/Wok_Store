@@ -4,6 +4,29 @@ function App() {
 
   return (
     <div className="container">
+      <header className="header">
+        <div className="logo">
+          <img src="/src/assets/images/logo.svg" alt="logo" />
+        </div>
+        <div className="title-wrapper">
+          <h1 className="title">Лапша Wok</h1>
+          <p className="text">Вкуснейшая лапша, прямо из Китая</p>
+        </div>
+        <div className="search-wrapper">
+          <div className="icon"></div>
+          <input type="text" className="search-field" placeholder='Найти лапшу...' />
+        </div>
+        <div className="basket-wrapper">
+          <div className="sum">5 999 696 ₽</div>
+          <div className="separator"></div>
+          <div className="value-wrapper">
+            <div className="icon">
+
+            </div>
+            <div className="value">369</div>
+          </div>
+        </div>
+      </header>
       <div className="nav-panel">
         <nav className='nav-wrapper'>
           <div className="nav-item active">Все</div>
@@ -14,9 +37,9 @@ function App() {
           <div className="nav-item">Фунчозы</div>
           <div className="nav-item-active"></div>
         </nav>
-        <div className="sort">
+        <div className="sort-ddl active" data-active-class="active">
           <span>Сортировать по:</span>
-          <div className="ddl-container" data-active-class="active">
+          <div className="ddl-container">
             <div className="selected-value">Популярности (DESC)</div>
             <div className="ddl-list">
               <div className="ddl-list__item">Популярности (ASC)</div>
