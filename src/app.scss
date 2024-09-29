@@ -32,18 +32,34 @@
 
 .nav-panel {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 16px;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 550px) {
+    margin-bottom: 16px;
+  }
 
   .nav-wrapper {
     display: flex;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $red $lightGrey;
     gap: 5px;
     border-radius: 15px;
     background: $lightGrey;
     padding: 7px;
     position: relative;
-    margin-bottom: 32px;
     user-select: none;
+
+    @media (max-width: 850px) {
+      width: 100%;
+    }
 
     .nav-item {
       padding: 10px 16px;
@@ -71,6 +87,68 @@
       left: 7px;
       width: 65px;
       height: 46px;
+    }
+  }
+
+  .sort {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-grow: 0;
+    position: relative;
+
+    @media (max-width: 850px) {
+      margin-left: 0;
+    }
+
+    .ddl-container.active {
+      .ddl-list {
+        max-height: 300px;
+      }
+    }
+
+    span {
+      text-wrap: nowrap;
+    }
+
+    .selected-value {
+      border-bottom: 1px dashed $red;
+      color: $red;
+    }
+
+    .ddl-list {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      width: 90%;
+      z-index: 2;
+      background: $white;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.2s;
+
+      .ddl-list__item {
+        padding: 6px 16px;
+        cursor: pointer;
+        transition: all 0.2;
+
+        &:first-child {
+          margin-top: 12px;
+        }
+
+        &:last-child {
+          margin-bottom: 12px;
+        }
+
+        &:hover,
+        &.active {
+          background: rgba($red, 0.1);
+          color: $red;
+        }
+      }
     }
   }
 }
