@@ -1,3 +1,5 @@
+import Counter from './counter';
+
 const ProductListItem = () => {
   return (
     <div className="wok-item">
@@ -11,11 +13,7 @@ const ProductListItem = () => {
         <h4 className="title">Удон с курицей</h4>
       </div>
       <div className="price-wrapper">
-        <div className="counter">
-          <div className="dec-btn">-</div>
-          <div className="count">1</div>
-          <div className="inc-btn">+</div>
-        </div>
+        <Counter />
         <div className="price">
           <div className="weight">320 г</div>
           <div className="price-value">419 ₽</div>

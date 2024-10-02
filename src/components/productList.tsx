@@ -1,3 +1,5 @@
+import Counter from './counter';
+
 const ProductList = () => {
   return (
     <div className="wok-list">
@@ -12,11 +14,7 @@ const ProductList = () => {
           <h4 className="title">Удон с курицей</h4>
         </div>
         <div className="price-wrapper">
-          <div className="counter">
-            <div className="dec-btn">-</div>
-            <div className="count">1</div>
-            <div className="inc-btn">+</div>
-          </div>
+          <Counter />
           <div className="price">
             <div className="weight">320 г</div>
             <div className="price-value">419 ₽</div>
@@ -35,11 +33,7 @@ const ProductList = () => {
           <h4 className="title">Тяхан с курицей</h4>
         </div>
         <div className="price-wrapper">
-          <div className="counter">
-            <div className="dec-btn">-</div>
-            <div className="count">1</div>
-            <div className="inc-btn">+</div>
-          </div>
+          <Counter />
           <div className="price">
             <div className="weight">300 г</div>
             <div className="price-value">339 ₽</div>
@@ -58,11 +52,7 @@ const ProductList = () => {
           <h4 className="title">Удон с говядиной</h4>
         </div>
         <div className="price-wrapper">
-          <div className="counter">
-            <div className="dec-btn">-</div>
-            <div className="count">1</div>
-            <div className="inc-btn">+</div>
-          </div>
+          <Counter />
           <div className="price">
             <div className="weight">320 г</div>
             <div className="price-value">439 ₽</div>
@@ -81,11 +71,7 @@ const ProductList = () => {
           <h4 className="title">Сомен с курицей</h4>
         </div>
         <div className="price-wrapper">
-          <div className="counter">
-            <div className="dec-btn">-</div>
-            <div className="count">1</div>
-            <div className="inc-btn">+</div>
-          </div>
+          <Counter />
           <div className="price">
             <div className="weight">320 г</div>
             <div className="price-value">419 ₽</div>
@@ -104,11 +90,7 @@ const ProductList = () => {
           <h4 className="title">Фунчоза с курицей</h4>
         </div>
         <div className="price-wrapper">
-          <div className="counter">
-            <div className="dec-btn">-</div>
-            <div className="count">1</div>
-            <div className="inc-btn">+</div>
-          </div>
+          <Counter />
           <div className="price">
             <div className="weight">320 г</div>
             <div className="price-value">419 ₽</div>
