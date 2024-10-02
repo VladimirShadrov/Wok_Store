@@ -1,34 +1,11 @@
 import Header from '../components/header';
+import NavSortPanel from '../components/navSortPanel';
 
 const MainPage = () => {
   return (
     <div className="container">
       <Header />
-      <div className="nav-panel">
-        <nav className="nav-wrapper">
-          <div className="nav-item active">Все</div>
-          <div className="nav-item">Гречневая</div>
-          <div className="nav-item">Пшеничная</div>
-          <div className="nav-item">Яичная</div>
-          <div className="nav-item">Тяханы</div>
-          <div className="nav-item">Фунчозы</div>
-          <div className="nav-item-active"></div>
-        </nav>
-        <div className="sort-ddl active" data-active-class="active">
-          <span>Сортировать по:</span>
-          <div className="ddl-container">
-            <div className="selected-value">Популярности (DESC)</div>
-            <div className="ddl-list">
-              <div className="ddl-list__item">Популярности (ASC)</div>
-              <div className="ddl-list__item active">Популярности (DESC)</div>
-              <div className="ddl-list__item">Цене (ASC)</div>
-              <div className="ddl-list__item">Цене (DESC)</div>
-              <div className="ddl-list__item">Алфавиту (ASC)</div>
-              <div className="ddl-list__item">Алфавиту (DESC)</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <NavSortPanel />
       <div className="wok-list">
         <div className="wok-item">
           <div className="link-container">
@@ -143,6 +120,7 @@ const MainPage = () => {
               <div className="price-value">419 ₽</div>
             </div>
           </div>
+
           <button className="to-cart-btn">в корзину</button>
         </div>
       </div>
