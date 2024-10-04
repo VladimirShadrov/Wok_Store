@@ -21,12 +21,12 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 20px;
 
   @media (max-width: 550px) {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 18px;
   }
 }
 
@@ -362,39 +362,6 @@
     margin: 0 auto;
     margin-bottom: 16px;
 
-    .counter {
-      display: flex;
-      width: 130px;
-      height: 42px;
-      background: $lightGrey;
-      border-radius: 6px;
-      overflow: hidden;
-      flex-shrink: 0;
-
-      .dec-btn,
-      .inc-btn {
-        width: 40px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        user-select: none;
-        transition: all 0.2s;
-
-        &:hover {
-          background: $red;
-          color: $white;
-        }
-      }
-
-      .count {
-        flex-grow: 1;
-        text-align: center;
-        line-height: 42px;
-      }
-    }
-
     .price {
       margin-left: auto;
       display: flex;
@@ -431,6 +398,206 @@
     &:hover {
       background: $red;
       color: $white;
+    }
+  }
+}
+
+.counter {
+  display: flex;
+  width: 130px;
+  height: 42px;
+  background: $lightGrey;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  .dec-btn,
+  .inc-btn {
+    width: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s;
+
+    &:hover {
+      background: $red;
+      color: $white;
+    }
+  }
+
+  .count {
+    flex-grow: 1;
+    text-align: center;
+    line-height: 42px;
+  }
+}
+
+//======= Карточка товара ===========
+.product-card {
+  .content {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      .image,
+      .description {
+        width: 100%;
+      }
+    }
+  }
+
+  .image {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    img {
+      width: 100%;
+      max-width: 700px;
+    }
+  }
+
+  .description {
+    width: 40%;
+
+    .title {
+      font-size: 30px;
+      line-height: 32px;
+      margin-bottom: 16px;
+
+      @media (max-width: 550px) {
+        font-size: 22px;
+        line-height: 26px;
+        margin-bottom: 8px;
+      }
+    }
+
+    .description-block {
+      margin-bottom: 20px;
+
+      @media (max-width: 550px) {
+        margin-bottom: 15px;
+      }
+
+      .block-title {
+        margin-bottom: 8px;
+
+        @media (max-width: 550px) {
+          margin-bottom: 2px;
+        }
+      }
+
+      .ingridient {
+        margin-bottom: 3px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        @media (max-width: 550px) {
+          margin-bottom: 2px;
+        }
+      }
+
+      .nutritional-item {
+        display: flex;
+        align-items: stretch;
+        margin-bottom: 6px;
+
+        @media (max-width: 550px) {
+          margin-bottom: 2px;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .separator {
+          flex-grow: 1;
+          border-bottom: 1px dotted black;
+        }
+      }
+    }
+
+    .order-block {
+      margin-bottom: 26px;
+      background: #d5d5d5;
+      padding: 18px;
+      border-radius: 12px;
+
+      @media (max-width: 550px) {
+        margin-bottom: 15px;
+      }
+
+      .wrapper {
+        display: flex;
+        margin-bottom: 12px;
+
+        .weight {
+          font-size: 12px;
+          line-height: 14px;
+          color: $grey;
+        }
+
+        .price-value {
+          font-size: 30px;
+          line-height: 32px;
+        }
+
+        .counter {
+          margin-left: auto;
+        }
+      }
+
+      .basket-btn {
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        outline: none;
+        border-radius: 12px;
+        height: 45px;
+        color: $white;
+        background: $red;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: all 0.2s;
+
+        &:hover {
+          background: $red-hovered;
+        }
+      }
+    }
+
+    .product-presentation {
+      .presentation-title {
+        font-size: 24px;
+        line-height: 28px;
+        margin-bottom: 8px;
+
+        @media (max-width: 550px) {
+          font-size: 20px;
+          line-height: 22px;
+          margin-bottom: 4px;
+        }
+      }
+
+      .presentation-text {
+        text-align: justify;
+        line-height: 22px;
+
+        @media (max-width: 550px) {
+          line-height: 18px;
+        }
+      }
     }
   }
 }
