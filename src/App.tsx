@@ -2,9 +2,10 @@ import './app.scss';
 import MainPage from './pages/mainPage';
 
 function App() {
-
   return (
-    <MainPage />
+    <div className="container">
+      <MainPage />
+    </div>
   );
 }
 
