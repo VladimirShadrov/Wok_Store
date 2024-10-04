@@ -437,6 +437,50 @@
 
 //======= Карточка товара ===========
 .product-card {
+  .breadcrumbs {
+    display: flex;
+
+    .crumb {
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 8px;
+      padding-right: 12px;
+      position: relative;
+      transition: all 0.2s;
+
+      @media (max-width: 550px) {
+        padding-right: 8px;
+        margin-right: 4px;
+      }
+
+      &:hover {
+        color: $grey;
+      }
+
+      &::after {
+        content: '/';
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+        padding-right: 0;
+        font-weight: 400;
+        cursor: default;
+
+        &:hover {
+          color: black;
+        }
+
+        &::after {
+          content: '';
+        }
+      }
+    }
+  }
+
   .content {
     display: flex;
     align-items: stretch;

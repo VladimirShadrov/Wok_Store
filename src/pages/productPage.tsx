@@ -6,6 +6,11 @@ const ProductPage = () => {
     <>
       <Header />
       <div className="product-card">
+        <div className="breadcrumbs">
+          <div className="crumb">Главная</div>
+          <div className="crumb">Фунчозы</div>
+          <div className="crumb">Удон с говядиной</div>
+        </div>
         <div className="content">
           <div className="image">
             <img src="/src/assets/images/1300/3-1300.jpg" alt="image" />
