@@ -41,6 +41,23 @@
     margin-bottom: 32px;
   }
 
+  &.product-page {
+    .search-wrapper {
+      display: none;
+    }
+
+    .basket-btn-wrapper {
+      margin-left: auto;
+    }
+  }
+
+  &.basket-page {
+    .search-wrapper,
+    .basket-btn-wrapper {
+      display: none;
+    }
+  }
+
   .logo {
     width: 50px;
     height: 50px;

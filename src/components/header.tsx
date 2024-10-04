@@ -3,6 +3,11 @@ import SearchField from './searchField';
 
 const Header = () => {
   return (
+    /**
+     * Добавить классы для разных страниц:
+     * - Карточка товара: product-page
+     * - Корзина: basket-page
+     */
     <header className="header">
       <div className="logo">
         <img src="/src/assets/images/logo.svg" alt="logo" />
