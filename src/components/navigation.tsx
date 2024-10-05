@@ -1,13 +1,37 @@
+import React from 'react';
+
 const Navigation = () => {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const menuItemRefs = React.useRef<HTMLDivElement[]>([]);
+  const floatingNavElement = React.useRef<HTMLDivElement>(null);
+  const menuItems = ['Все', 'Гречневая', 'Пшеничная', 'Яичная', 'Тяханы', 'Фунчозы'];
+
+  const onMenuItemClick = (index: number) => {
+    setActiveIndex(index);
+
+    if (floatingNavElement.current) {
+      floatingNavElement.current.style.top = `${menuItemRefs.current[index].offsetTop}px`;
+      floatingNavElement.current.style.left = `${menuItemRefs.current[index].offsetLeft}px`;
+      floatingNavElement.current.style.width = `${menuItemRefs.current[index].offsetWidth}px`;
+    }
+  };
+
+  React.useEffect(() => {
+    onMenuItemClick(0);
+  }, []);
+
   return (
     <nav className="nav-wrapper">
-      <div className="nav-item active">Все</div>
-      <div className="nav-item">Гречневая</div>
-      <div className="nav-item">Пшеничная</div>
-      <div className="nav-item">Яичная</div>
-      <div className="nav-item">Тяханы</div>
-      <div className="nav-item">Фунчозы</div>
-      <div className="nav-item-active"></div>
+      {menuItems.map((item, index) => (
+        <div
+          key={index}
+          ref={(el: HTMLDivElement) => (menuItemRefs.current[index] = el)}
+          onClick={() => onMenuItemClick(index)}
+          className={activeIndex === index ? 'nav-item active' : 'nav-item'}>
+          {item}
+        </div>
+      ))}
+      <div ref={floatingNavElement} className="nav-item-active"></div>
     </nav>
   );
 };

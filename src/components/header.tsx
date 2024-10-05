@@ -1,5 +1,6 @@
 import BasketBtn from './basketBtn';
 import SearchField from './searchField';
+import logo from '../assets/images/logo.svg';
 
 const Header = () => {
   return (
@@ -10,7 +11,7 @@ const Header = () => {
      */
     <header className="header">
       <div className="logo">
-        <img src="/src/assets/images/logo.svg" alt="logo" />
+        <img src={logo} alt="logo" />
       </div>
       <div className="title-wrapper">
         <h1 className="title">Лапша Wok</h1>
