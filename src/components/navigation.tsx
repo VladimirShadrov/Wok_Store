@@ -1,13 +1,13 @@
 import React from 'react';
 
 const Navigation = () => {
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [activeMenuItemIndex, setActiveMenuItemIndex] = React.useState(0);
   const menuItemRefs = React.useRef<HTMLDivElement[]>([]);
   const floatingNavElement = React.useRef<HTMLDivElement>(null);
   const menuItems = ['Все', 'Гречневая', 'Пшеничная', 'Яичная', 'Тяханы', 'Фунчозы'];
 
   const onMenuItemClick = (index: number) => {
-    setActiveIndex(index);
+    setActiveMenuItemIndex(index);
 
     if (floatingNavElement.current) {
       floatingNavElement.current.style.top = `${menuItemRefs.current[index].offsetTop}px`;
@@ -27,7 +27,7 @@ const Navigation = () => {
           key={index}
           ref={(el: HTMLDivElement) => (menuItemRefs.current[index] = el)}
           onClick={() => onMenuItemClick(index)}
-          className={activeIndex === index ? 'nav-item active' : 'nav-item'}>
+          className={activeMenuItemIndex === index ? 'nav-item active' : 'nav-item'}>
           {item}
         </div>
       ))}
