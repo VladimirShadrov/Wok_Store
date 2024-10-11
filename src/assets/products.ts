@@ -1,5 +1,5 @@
 type ProductType = string | number | string[] | { [key: string]: string | number }[];
-const productsList: { [key: string]: ProductType }[] = [
+const products: { [key: string]: ProductType }[] = [
   {
     id: 1,
     title: 'Тяхан с овощами',
@@ -788,4 +788,4 @@ const productsList: { [key: string]: ProductType }[] = [
   },
 ];
 
-export default productsList;
+export default products;
