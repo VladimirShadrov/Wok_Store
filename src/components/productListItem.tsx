@@ -14,7 +14,7 @@ const ProductListItem = ({ title, imgSmall, ingridients, weight, price }: Produc
       <div className="link-container">
         <div className="image">
           <img src={imgSmall} alt="image" />
-          <div className="ingridients">{ingridients.map((ingridient: string) => ingridient)}</div>
+          <div className="ingridients">{ingridients.map((ingridient: string) => ingridient).join(', ')}</div>
         </div>
         <h4 className="title">{title}</h4>
       </div>
