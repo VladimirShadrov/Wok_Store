@@ -5,7 +5,7 @@ const ProductList = () => {
   return (
     <div className="wok-list">
       {products.map((product) => (
-        <ProductListItem {...product} />
+        <ProductListItem key={product.id} {...product} />
       ))}
     </div>
   );
