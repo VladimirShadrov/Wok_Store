@@ -1,22 +1,31 @@
 import Counter from './counter';
 
-const ProductListItem = () => {
+type ProductType = {
+  title: string;
+  imgSmall: string;
+  ingridients: string[];
+  weight: number;
+  price: number;
+};
+
+const ProductListItem = ({ title, imgSmall, ingridients, weight, price }: ProductType) => {
   return (
     <div className="wok-item">
       <div className="link-container">
         <div className="image">
-          <img src="https://static.pizzasushiwok.ru/images/menu_new/517-300.jpg" alt="image" />
+          <img src={imgSmall} alt="image" />
           <div className="ingridients">
-            масло растительное, грудка куриная, морковь, лук репчатый, перец болгарский, кабачки, соус "Чесночный", лапша пшеничная
+            {/* масло растительное, грудка куриная, морковь, лук репчатый, перец болгарский, кабачки, соус "Чесночный", лапша пшеничная */}
+            {ingridients.map((ingridient: string) => ingridient)}
           </div>
         </div>
-        <h4 className="title">Удон с курицей</h4>
+        <h4 className="title">{title}</h4>
       </div>
       <div className="price-wrapper">
         <Counter />
         <div className="price">
-          <div className="weight">320 г</div>
-          <div className="price-value">419 ₽</div>
+          <div className="weight">{weight} г</div>
+          <div className="price-value">{price} ₽</div>
         </div>
       </div>
       <button className="to-cart-btn">в корзину</button>

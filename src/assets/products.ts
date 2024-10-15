@@ -1,12 +1,24 @@
-type ProductType = string | number | string[] | { [key: string]: string | number }[];
-const products: { [key: string]: ProductType }[] = [
+type ProductType = {
+  id: number;
+  title: string;
+  weight: number;
+  price: number;
+  imgSmall: string;
+  imgBig: string;
+  ingridients: string[];
+  nutritionalValue: { [key: string]: string | number }[];
+  description: string;
+  category: string;
+};
+
+const products: ProductType[] = [
   {
     id: 1,
     title: 'Тяхан с овощами',
     weight: 300,
     price: 279,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/1-300.jpg',
+    imgBig: 'images/products/1-1300.jpg',
     ingridients: ['Масло растительное', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Рис', 'Соус "Чесночный"', 'Кунжут'],
     nutritionalValue: [
       {
@@ -35,8 +47,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Тяхан с курицей',
     weight: 300,
     price: 339,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/2-300.jpg',
+    imgBig: 'images/products/2-1300.jpg',
     ingridients: ['Масло растительное', 'Грудка куриная', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Рис', 'Соус "Чесночный"', 'Кунжут'],
     nutritionalValue: [
       {
@@ -65,8 +77,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Соба с овощами',
     weight: 320,
     price: 359,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/3-300.jpg',
+    imgBig: 'images/products/3-1300.jpg',
     ingridients: ['Масло растительное', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Лапша гречневая', 'Соус "Чесночный"', 'Кунжут'],
     nutritionalValue: [
       {
@@ -95,8 +107,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Удон с овощами',
     weight: 320,
     price: 359,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/4-300.jpg',
+    imgBig: 'images/products/4-1300.jpg',
     ingridients: ['Масло растительное', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Лапша пшеничная', 'Соус "Чесночный"', 'Кунжут'],
     nutritionalValue: [
       {
@@ -125,8 +137,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Сомен с овощами',
     weight: 320,
     price: 359,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/5-300.jpg',
+    imgBig: 'images/products/5-1300.jpg',
     ingridients: ['Масло растительное', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Лапша яичная', 'Соус "Чесночный"', 'Кунжут'],
     nutritionalValue: [
       {
@@ -155,8 +167,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Тяхан со свининой',
     weight: 300,
     price: 359,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/6-300.jpg',
+    imgBig: 'images/products/6-1300.jpg',
     ingridients: ['Масло растительное', 'Свинина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Рис', 'Соус "Чесночный"', 'Кунжут'],
     nutritionalValue: [
       {
@@ -185,8 +197,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Фунчоза с овощами',
     weight: 320,
     price: 359,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/7-300.jpg',
+    imgBig: 'images/products/7-1300.jpg',
     ingridients: ['Масло растительное', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша стеклянная', 'Кунжут'],
     nutritionalValue: [
       {
@@ -215,8 +227,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Тяхан с говядиной',
     weight: 300,
     price: 369,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/8-300.jpg',
+    imgBig: 'images/products/8-1300.jpg',
     ingridients: ['Масло растительное', 'Говящина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Рис', 'Соус "Чесночный"', 'Кунжут'],
     nutritionalValue: [
       {
@@ -245,8 +257,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Соба с курицей',
     weight: 320,
     price: 419,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/9-300.jpg',
+    imgBig: 'images/products/9-1300.jpg',
     ingridients: [
       'Масло растительное',
       'Грудка куриная',
@@ -284,8 +296,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Соба со свининой',
     weight: 320,
     price: 419,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/10-300.jpg',
+    imgBig: 'images/products/10-1300.jpg',
     ingridients: ['Масло растительное', 'Свинина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша гречневая'],
     nutritionalValue: [
       {
@@ -314,8 +326,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Удон с курицей',
     weight: 320,
     price: 419,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/11-300.jpg',
+    imgBig: 'images/products/11-1300.jpg',
     ingridients: [
       'Масло растительное',
       'Грудка куриная',
@@ -353,8 +365,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Удон со свининой',
     weight: 320,
     price: 419,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/12-300.jpg',
+    imgBig: 'images/products/12-1300.jpg',
     ingridients: ['Масло растительное', 'Свинина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша пшеничная'],
     nutritionalValue: [
       {
@@ -383,8 +395,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Сомен с курицей',
     weight: 320,
     price: 419,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/13-300.jpg',
+    imgBig: 'images/products/13-1300.jpg',
     ingridients: [
       'Масло растительное',
       'Грудка куриная',
@@ -422,8 +434,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Сомен со свининой',
     weight: 320,
     price: 419,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/14-300.jpg',
+    imgBig: 'images/products/14-1300.jpg',
     ingridients: ['Масло растительное', 'Свинина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша яичная'],
     nutritionalValue: [
       {
@@ -452,8 +464,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Фунчоза со свининой',
     weight: 320,
     price: 419,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/15-300.jpg',
+    imgBig: 'images/products/15-1300.jpg',
     ingridients: ['Масло растительное', 'Свинина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша стеклянная'],
     nutritionalValue: [
       {
@@ -482,8 +494,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Фунчоза с курицей',
     weight: 320,
     price: 419,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/16-300.jpg',
+    imgBig: 'images/products/16-1300.jpg',
     ingridients: [
       'Масло растительное',
       'Грудка куриная',
@@ -521,8 +533,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Соба с говядиной',
     weight: 320,
     price: 439,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/17-300.jpg',
+    imgBig: 'images/products/17-1300.jpg',
     ingridients: ['Масло растительное', 'Говядина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша гречневая'],
     nutritionalValue: [
       {
@@ -551,8 +563,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Удон с говядиной',
     weight: 320,
     price: 439,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/18-300.jpg',
+    imgBig: 'images/products/18-1300.jpg',
     ingridients: ['Масло растительное', 'Говядина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша пшеничная'],
     nutritionalValue: [
       {
@@ -581,8 +593,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Сомен с говядиной',
     weight: 320,
     price: 439,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/19-300.jpg',
+    imgBig: 'images/products/19-1300.jpg',
     ingridients: ['Масло растительное', 'Говядина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша яичная'],
     nutritionalValue: [
       {
@@ -611,8 +623,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Фунчоза с говядиной',
     weight: 320,
     price: 439,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/20-300.jpg',
+    imgBig: 'images/products/20-1300.jpg',
     ingridients: ['Масло растительное', 'Говядина', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша стеклянная'],
     nutritionalValue: [
       {
@@ -641,8 +653,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Тяхан с креветками',
     weight: 300,
     price: 459,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/21-300.jpg',
+    imgBig: 'images/products/21-1300.jpg',
     ingridients: ['Масло растительное', 'Креветки', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Рис', 'Соус "Чесночный"', 'Кунжут'],
     nutritionalValue: [
       {
@@ -671,8 +683,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Соба с креветками',
     weight: 320,
     price: 529,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/22-300.jpg',
+    imgBig: 'images/products/22-1300.jpg',
     ingridients: ['Масло растительное', 'Креветки', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша гречневая'],
     nutritionalValue: [
       {
@@ -701,8 +713,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Удон с креветками',
     weight: 320,
     price: 529,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/23-300.jpg',
+    imgBig: 'images/products/23-1300.jpg',
     ingridients: ['Масло растительное', 'Креветки', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша пшеничная'],
     nutritionalValue: [
       {
@@ -731,8 +743,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Сомен с креветками',
     weight: 320,
     price: 529,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/24-300.jpg',
+    imgBig: 'images/products/24-1300.jpg',
     ingridients: ['Масло растительное', 'Креветки', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша яичная'],
     nutritionalValue: [
       {
@@ -761,8 +773,8 @@ const products: { [key: string]: ProductType }[] = [
     title: 'Фунчоза с креветками',
     weight: 320,
     price: 529,
-    imgSmall: '',
-    imgBig: '',
+    imgSmall: 'images/products/25-300.jpg',
+    imgBig: 'images/products/25-1300.jpg',
     ingridients: ['Масло растительное', 'Креветки', 'Морковь', 'Лук репчатый', 'Перец болгарский', 'Кабачки', 'Соус "Чесночный"', 'Лапша стеклянная'],
     nutritionalValue: [
       {

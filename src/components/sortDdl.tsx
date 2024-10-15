@@ -3,7 +3,7 @@ const SortDDL = () => {
     <div className="sort-ddl active" data-active-class="active">
       <span>Сортировать по:</span>
       <div className="ddl-container">
-        <div className="selected-value">Популярности (DESC)</div>
+        <span className="selected-value">Популярности (DESC)</span>
         <div className="ddl-list">
           <div className="ddl-list__item">Популярности (ASC)</div>
           <div className="ddl-list__item active">Популярности (DESC)</div>
