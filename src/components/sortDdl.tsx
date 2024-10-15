@@ -4,6 +4,7 @@ const SortDDL = () => {
   const listItems = ['Популярности (ASC)', 'Популярности (DESC)', 'Цене (ASC)', 'Цене (DESC)', 'Алфавиту (ASC)', 'Алфавиту (DESC)'];
   const [activeIndex, setActiveIndex] = React.useState(1);
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
+  const dropdownListElement = React.useRef<HTMLDivElement>(null);
 
   const onMenuItemClick = (index: number) => {
     setActiveIndex(index);
@@ -14,16 +15,38 @@ const SortDDL = () => {
     setIsMenuVisible(false);
   };
 
+  const onDocumenClick = React.useCallback(
+    (event: MouseEvent) => {
+      const targetElement = event.target as HTMLElement;
+
+      if (isMenuVisible && dropdownListElement.current && !dropdownListElement.current?.contains(targetElement)) {
+        hideMenu();
+      }
+    },
+    [isMenuVisible]
+  );
+
+  React.useEffect(() => {
+    document.addEventListener('click', onDocumenClick);
+
+    return () => document.removeEventListener('click', onDocumenClick);
+  }, [onDocumenClick]);
+
   return (
     <div className={isMenuVisible ? 'sort-ddl active' : 'sort-ddl'} data-active-class="active">
       <span>Сортировать по:</span>
       <div className="ddl-container">
-        <span onClick={() => setIsMenuVisible(!isMenuVisible)} className="selected-value">
+        <span
+          onClick={(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+            event.stopPropagation();
+            setIsMenuVisible((prev) => !prev);
+          }}
+          className="selected-value">
           {listItems[activeIndex]}
         </span>
-        <div className="ddl-list">
+        <div ref={dropdownListElement} className="ddl-list">
           {listItems.map((item, index) => (
-            <div key={index} onClick={() => onMenuItemClick(index)} className={index === activeIndex ? 'ddl-list__item active' : 'ddl-list__item'}>
+            <div key={item} onClick={() => onMenuItemClick(index)} className={index === activeIndex ? 'ddl-list__item active' : 'ddl-list__item'}>
               {item}
             </div>
           ))}
