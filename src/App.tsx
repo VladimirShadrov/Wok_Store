@@ -1,12 +1,28 @@
 import './app.scss';
 import MainPage from './pages/mainPage';
-// import ProductPage from './pages/productPage';
-// import BasketPage from './pages/basketPage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ProductPage from './pages/productPage';
+import BasketPage from './pages/basketPage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <MainPage />,
+  },
+  {
+    path: '/product',
+    element: <ProductPage />,
+  },
+  {
+    path: '/basket',
+    element: <BasketPage />,
+  },
+]);
 
 function App() {
   return (
     <div className="container">
-      <MainPage />
+      <RouterProvider router={router} />
     </div>
   );
 }
