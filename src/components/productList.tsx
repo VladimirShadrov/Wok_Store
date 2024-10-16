@@ -1,4 +1,5 @@
 import ProductListItem from './productListItem';
+import WokSceleton from './sceleton';
 import React from 'react';
 
 const URL = 'https://670f90c63e71518616587ae2.mockapi.io/categories';
@@ -18,6 +19,7 @@ type WokItemType = {
 
 const ProductList = () => {
   const [wokData, setWokData] = React.useState<WokItemType[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     (async () => {
@@ -28,6 +30,7 @@ const ProductList = () => {
           const data = await response.json();
           const myWokArray = data[0];
           setWokData(myWokArray);
+          setIsLoading(false);
         } else {
           console.error(`Ошибка получения данных с сервера. Статус запроса: ${response.status}`);
         }
@@ -39,9 +42,9 @@ const ProductList = () => {
 
   return (
     <div className="wok-list">
-      {wokData.map((wokItem) => (
-        <ProductListItem key={wokItem.id} {...wokItem} />
-      ))}
+      {isLoading
+        ? [...new Array(8)].map((_, index) => <WokSceleton key={index} />)
+        : wokData.map((wokItem) => <ProductListItem key={wokItem.id} {...wokItem} />)}
     </div>
   );
 };
