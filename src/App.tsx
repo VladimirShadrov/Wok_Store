@@ -17,6 +17,10 @@ const router = createBrowserRouter([
     path: '/basket',
     element: <BasketPage />,
   },
+  {
+    path: '*',
+    element: <h1>Ничего не найдено</h1>,
+  },
 ]);
 
 function App() {

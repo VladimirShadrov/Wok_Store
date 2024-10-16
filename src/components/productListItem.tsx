@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Counter from './counter';
 
 type ProductType = {
@@ -11,13 +12,15 @@ type ProductType = {
 const ProductListItem = ({ title, imgSmall, ingridients, weight, price }: ProductType) => {
   return (
     <div className="wok-item">
-      <div className="link-container">
-        <div className="image">
-          <img src={imgSmall} alt="image" />
-          <div className="ingridients">{ingridients.map((ingridient: string) => ingridient).join(', ')}</div>
+      <Link to={'/product'}>
+        <div className="link-container">
+          <div className="image">
+            <img src={imgSmall} alt="image" />
+            <div className="ingridients">{ingridients.map((ingridient: string) => ingridient).join(', ')}</div>
+          </div>
+          <h4 className="title">{title}</h4>
         </div>
-        <h4 className="title">{title}</h4>
-      </div>
+      </Link>
       <div className="price-wrapper">
         <Counter />
         <div className="price">
