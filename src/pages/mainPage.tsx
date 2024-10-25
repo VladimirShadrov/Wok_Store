@@ -1,4 +1,4 @@
-import Header from '../components/header';
+import Header from '../components/headerComponent/header';
 import NavSortPanel from '../components/navSortPanel';
 import ProductList from '../components/productList';
 

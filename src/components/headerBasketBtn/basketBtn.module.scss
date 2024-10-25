@@ -1,0 +1,39 @@
+@import '../../styles/variables.scss';
+
+.basket-btn-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 30px;
+  background: $red;
+  color: $white;
+  gap: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $red-hovered;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: auto;
+  }
+
+  .separator {
+    width: 1px;
+    height: 16px;
+    background: $white;
+  }
+
+  .value-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .icon {
+    width: 16px;
+    height: 16px;
+    background: url('/src/assets/images/basket.svg') no-repeat center / contain;
+  }
+}

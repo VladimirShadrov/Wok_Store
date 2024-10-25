@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Counter from './counter';
 
 type ProductType = {
+  id: number;
   title: string;
   imgSmall: string;
   ingridients: string[];
@@ -9,10 +10,10 @@ type ProductType = {
   price: number;
 };
 
-const ProductListItem = ({ title, imgSmall, ingridients, weight, price }: ProductType) => {
+const ProductListItem = ({ id, title, imgSmall, ingridients, weight, price }: ProductType) => {
   return (
     <div className="wok-item">
-      <Link to={'/product'}>
+      <Link to={`/product`}>
         <div className="link-container">
           <div className="image">
             <img src={imgSmall} alt="image" />

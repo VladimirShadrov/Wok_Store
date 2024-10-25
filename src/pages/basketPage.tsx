@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import Counter from '../components/counter';
-import Header from '../components/header';
+import Header from '../components/headerComponent/header';
 
 const BasketPage = () => {
   return (
@@ -77,7 +78,9 @@ const BasketPage = () => {
             <img src="src/assets/images/empty-bascket.svg" alt="image" />
           </div>
 
-          <button className="empty-btn">Вернуться на главную</button>
+          <Link to={'/'}>
+            <button className="empty-btn">Вернуться на главную</button>
+          </Link>
         </div>
       </div>
     </>
