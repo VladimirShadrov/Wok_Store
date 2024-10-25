@@ -34,16 +34,6 @@ a {
   }
 }
 
-.wok-list {
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 26px;
-
-  @media (max-width: 550px) {
-    row-gap: 12px;
-  }
-}
-
 //======= Карточка товара ===========
 .product-card {
   .breadcrumbs {

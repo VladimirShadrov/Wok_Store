@@ -1,5 +1,5 @@
 import ProductListItem from '../productListItem/productListItem';
-import WokSceleton from '../sceleton';
+import WokSceleton from '../productListSceleton/sceleton';
 import React from 'react';
 import styles from './productList.module.scss';
 
