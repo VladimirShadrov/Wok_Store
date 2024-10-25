@@ -8,6 +8,7 @@ export default defineConfig({
     devSourcemap: true,
     modules: {
       localsConvention: 'camelCase',
+      generateScopedName: '[name]__[local]__[hash:base64:2]',
     },
   },
 });
