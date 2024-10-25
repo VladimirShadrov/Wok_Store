@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './sortDdl.module.scss';
 
 const SortDDL = () => {
   const listItems = ['Популярности (ASC)', 'Популярности (DESC)', 'Цене (ASC)', 'Цене (DESC)', 'Алфавиту (ASC)', 'Алфавиту (DESC)'];
@@ -33,20 +34,23 @@ const SortDDL = () => {
   }, [onDocumenClick]);
 
   return (
-    <div className={isMenuVisible ? 'sort-ddl active' : 'sort-ddl'} data-active-class="active">
+    <div className={isMenuVisible ? `${styles.sortDdl} ${styles.active}` : styles.sortDdl} data-active-class="active">
       <span>Сортировать по:</span>
-      <div className="ddl-container">
+      <div className={styles.ddlContainer}>
         <span
           onClick={(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
             event.stopPropagation();
             setIsMenuVisible((prev) => !prev);
           }}
-          className="selected-value">
+          className={styles.selectedValue}>
           {listItems[activeIndex]}
         </span>
-        <div ref={dropdownListElement} className="ddl-list">
+        <div ref={dropdownListElement} className={styles.ddlList}>
           {listItems.map((item, index) => (
-            <div key={item} onClick={() => onMenuItemClick(index)} className={index === activeIndex ? 'ddl-list__item active' : 'ddl-list__item'}>
+            <div
+              key={item}
+              onClick={() => onMenuItemClick(index)}
+              className={index === activeIndex ? `${styles.ddlListItem} ${styles.active}` : styles.ddlListItem}>
               {item}
             </div>
           ))}
