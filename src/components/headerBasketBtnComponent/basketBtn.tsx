@@ -1,7 +1,5 @@
 import styles from './basketBtn.module.scss';
 
-console.log('Styles: ', styles);
-
 const BasketBtn = () => {
   return (
     <div className={styles.basketBtnWrapper}>

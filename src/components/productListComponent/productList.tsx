@@ -1,4 +1,4 @@
-import ProductListItem from '../productListItem/productListItem';
+import ProductListItem from '../productListItemComponent/productListItem';
 import WokSceleton from '../productListSceleton/sceleton';
 import React from 'react';
 import styles from './productList.module.scss';

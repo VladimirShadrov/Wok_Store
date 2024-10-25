@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Counter from '../counter/counter';
+import Counter from '../counterComponent/counter';
 import styles from './productListItem.module.scss';
 
 type ProductType = {

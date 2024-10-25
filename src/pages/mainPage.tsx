@@ -1,6 +1,6 @@
 import Header from '../components/headerComponent/header';
-import NavSortPanel from '../components/navSortPanel/navSortPanel';
-import ProductList from '../components/productList/productList';
+import NavSortPanel from '../components/navSortPanelComponent/navSortPanel';
+import ProductList from '../components/productListComponent/productList';
 
 const MainPage = () => {
   return (

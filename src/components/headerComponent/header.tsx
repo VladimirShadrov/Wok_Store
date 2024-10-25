@@ -1,5 +1,5 @@
-import BasketBtn from '../headerBasketBtn/basketBtn';
-import SearchField from '../headerSearchField/searchField';
+import BasketBtn from '../headerBasketBtnComponent/basketBtn';
+import SearchField from '../headerSearchFieldComponent/searchField';
 import logo from '../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
 import styles from './header.module.scss';

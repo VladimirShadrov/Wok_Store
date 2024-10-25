@@ -1,5 +1,5 @@
-import Navigation from '../navigation/navigation';
-import SortDDL from '../sortDDL/sortDdl';
+import Navigation from '../navigationComponent/navigation';
+import SortDDL from '../sortDDLComponent/sortDdl';
 import styles from './navSortPanel.module.scss';
 
 const NavSortPanel = () => {
