@@ -1,6 +1,7 @@
-import ProductListItem from './productListItem/productListItem';
-import WokSceleton from './sceleton';
+import ProductListItem from '../productListItem/productListItem';
+import WokSceleton from '../sceleton';
 import React from 'react';
+import styles from './productList.module.scss';
 
 const URL = 'https://670f90c63e71518616587ae2.mockapi.io/categories';
 
@@ -41,7 +42,7 @@ const ProductList = () => {
   }, []);
 
   return (
-    <div className="wok-list">
+    <div className={styles.wokList}>
       {isLoading
         ? [...new Array(8)].map((_, index) => <WokSceleton key={index} />)
         : wokData.map((wokItem) => <ProductListItem key={wokItem.id} {...wokItem} />)}
