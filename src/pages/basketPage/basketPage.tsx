@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Counter from '../components/counterComponent/counter';
-import Header from '../components/headerComponent/header';
+import Counter from '../../components/counterComponent/counter';
+import Header from '../../components/headerComponent/header';
 
 const BasketPage = () => {
   return (

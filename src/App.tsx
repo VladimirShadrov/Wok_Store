@@ -1,8 +1,8 @@
 import './app.scss';
-import MainPage from './pages/mainPage';
+import MainPage from './pages/mainPage/mainPage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ProductPage from './pages/productPage';
-import BasketPage from './pages/basketPage';
+import ProductPage from './pages/productPage/productPage';
+import BasketPage from './pages/basketPage/basketPage';
 
 const router = createBrowserRouter([
   {
