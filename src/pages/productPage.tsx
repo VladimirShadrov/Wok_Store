@@ -1,4 +1,4 @@
-import Counter from '../components/counter';
+import Counter from '../components/counter/counter';
 import Header from '../components/headerComponent/header';
 
 const ProductPage = () => {

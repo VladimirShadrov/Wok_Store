@@ -1,4 +1,4 @@
-import ProductListItem from './productListItem';
+import ProductListItem from './productListItem/productListItem';
 import WokSceleton from './sceleton';
 import React from 'react';
 
