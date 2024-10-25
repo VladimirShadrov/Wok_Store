@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './navigation.module.scss';
 
 const Navigation = () => {
   const [activeMenuItemIndex, setActiveMenuItemIndex] = React.useState(0);
@@ -21,17 +22,17 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className="nav-wrapper">
+    <nav className={styles.navWrapper}>
       {menuItems.map((item, index) => (
         <div
           key={index}
           ref={(el: HTMLDivElement) => (menuItemRefs.current[index] = el)}
           onClick={() => onMenuItemClick(index)}
-          className={activeMenuItemIndex === index ? 'nav-item active' : 'nav-item'}>
+          className={activeMenuItemIndex === index ? `${styles.navItem} ${styles.active}` : styles.navItem}>
           {item}
         </div>
       ))}
-      <div ref={floatingNavElement} className="nav-item-active"></div>
+      <div ref={floatingNavElement} className={styles.navItemActive}></div>
     </nav>
   );
 };
