@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './navigation.module.scss';
 
-const Navigation = () => {
+type PropsType = {
+  selectCategory: (category: string) => void;
+};
+
+const Navigation = ({ selectCategory }: PropsType) => {
   const [activeMenuItemIndex, setActiveMenuItemIndex] = React.useState(0);
   const menuItemRefs = React.useRef<HTMLDivElement[]>([]);
   const floatingNavElement = React.useRef<HTMLDivElement>(null);
@@ -16,6 +20,10 @@ const Navigation = () => {
       floatingNavElement.current.style.width = `${menuItemRefs.current[index].offsetWidth}px`;
     }
   };
+
+  React.useEffect(() => {
+    selectCategory(menuItems[activeMenuItemIndex]);
+  }, [activeMenuItemIndex]);
 
   React.useEffect(() => {
     onMenuItemClick(0);
