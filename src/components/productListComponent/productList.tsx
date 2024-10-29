@@ -29,7 +29,7 @@ const ProductList = () => {
 
         if (response.ok) {
           const data = await response.json();
-          const myWokArray = data[0];
+          const myWokArray = data;
           setWokData(myWokArray);
           setIsLoading(false);
         } else {
