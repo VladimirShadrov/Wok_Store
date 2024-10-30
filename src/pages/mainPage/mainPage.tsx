@@ -44,7 +44,9 @@ const MainPage = () => {
   const [productList, setProductList] = React.useState<WokItemType[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
-  const URL = `https://670f90c63e71518616587ae2.mockapi.io/categories?${filterCategory.filterKey}=${filterCategory.name}&sortBy=${sortData.sortKey}&order=${sortData.order}`;
+  const filterParams = `${filterCategory.name === 'Все' ? '' : filterCategory.filterKey + '=' + filterCategory.name}`;
+  const URL = `https://670f90c63e71518616587ae2.mockapi.io/categories?${filterParams}&sortBy=${sortData.sortKey}&order=${sortData.order}
+  `;
 
   React.useEffect(() => {
     (async () => {
