@@ -2,15 +2,22 @@ import Navigation from '../navigationComponent/navigation';
 import SortDDL from '../sortDDLComponent/sortDdl';
 import styles from './navSortPanel.module.scss';
 
-type PropsType = {
-  selectCategory: (category: string) => void;
+type SortType = {
+  type: string;
+  direction: string;
+  directionIcon: string;
 };
 
-const NavSortPanel = ({ selectCategory }: PropsType) => {
+type PropsType = {
+  selectCategory: (category: string) => void;
+  sortProducts: (sortType: SortType) => void;
+};
+
+const NavSortPanel = ({ selectCategory, sortProducts }: PropsType) => {
   return (
     <div className={styles.navPanel}>
       <Navigation selectCategory={(category: string) => selectCategory(category)} />
-      <SortDDL />
+      <SortDDL sortProducts={(sortType: SortType) => sortProducts(sortType)} />
     </div>
   );
 };
