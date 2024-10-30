@@ -31,8 +31,8 @@
   .selected-value {
     border-bottom: 1px dashed $red;
     color: $red;
-    font-weight: 500;
     cursor: pointer;
+    padding-bottom: 3px;
   }
 
   .ddl-list {

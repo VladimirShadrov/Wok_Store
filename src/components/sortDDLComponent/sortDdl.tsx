@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './sortDdl.module.scss';
 
 const SortDDL = () => {
-  const listItems = ['Популярности (ASC)', 'Популярности (DESC)', 'Цене (ASC)', 'Цене (DESC)', 'Алфавиту (ASC)', 'Алфавиту (DESC)'];
+  const listItems = ['Популярности ↑', 'Популярности ↓', 'Цене ↑', 'Цене ↓', 'Алфавиту ↑', 'Алфавиту ↓'];
   const [activeIndex, setActiveIndex] = React.useState(1);
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
   const dropdownListElement = React.useRef<HTMLDivElement>(null);
