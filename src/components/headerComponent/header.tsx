@@ -4,7 +4,12 @@ import logo from '../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
 
-const Header = () => {
+type SearchFieldProps = {
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Header: React.FC<SearchFieldProps> = ({ searchValue, setSearchValue }) => {
   return (
     /**
      * Добавить классы для разных страниц:
@@ -21,7 +26,7 @@ const Header = () => {
         <h1 className={styles.title}>Лапша Wok</h1>
         <p className={styles.text}>Вкуснейшая лапша, прямо из Китая</p>
       </div>
-      <SearchField />
+      <SearchField searchValue={searchValue} setSearchValue={setSearchValue} />
       <Link to={'/basket'}>
         <BasketBtn />
       </Link>

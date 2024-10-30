@@ -24,11 +24,14 @@ type ProductListProps = {
 
 const ProductList = ({ productListData, isLoading }: ProductListProps) => {
   return (
-    <div className={styles.wokList}>
-      {isLoading
-        ? [...new Array(8)].map((_, index) => <WokSceleton key={index} />)
-        : productListData.map((wokItem) => <ProductListItem key={wokItem.id} {...wokItem} />)}
-    </div>
+    <>
+      <div className={styles.wokList}>
+        {isLoading
+          ? [...new Array(8)].map((_, index) => <WokSceleton key={index} />)
+          : productListData.map((wokItem) => <ProductListItem key={wokItem.id} {...wokItem} />)}
+      </div>
+      {!productListData.length && <h2 className={styles.notFound}>По заданным критериям поиска ничего не найдено</h2>}
+    </>
   );
 };
 

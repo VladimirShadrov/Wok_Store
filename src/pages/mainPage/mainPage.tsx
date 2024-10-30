@@ -42,7 +42,10 @@ const MainPage = () => {
     sortKey: 'ratio',
   });
   const [productList, setProductList] = React.useState<WokItemType[]>([]);
+  const [filtredProductList, setFiltredProductList] = React.useState<WokItemType[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
+
+  const [searchValue, setSearchValue] = React.useState('');
 
   const filterParams = `${filterCategory.name === 'Все' ? '' : filterCategory.filterKey + '=' + filterCategory.name}`;
   const URL = `https://670f90c63e71518616587ae2.mockapi.io/categories?${filterParams}&sortBy=${sortData.sortKey}&order=${sortData.order}
@@ -55,8 +58,8 @@ const MainPage = () => {
         const response = await fetch(URL);
 
         if (response.ok) {
-          const data = await response.json();
-          const myWokArray = data;
+          const myWokArray = await response.json();
+
           setProductList(myWokArray);
           setIsLoading(false);
         } else {
@@ -68,15 +71,20 @@ const MainPage = () => {
     })();
   }, [filterCategory, sortData]);
 
+  React.useEffect(() => {
+    const filtredProducts = [...productList].filter((product) => product.title.toLowerCase().includes(searchValue.toLowerCase()));
+    setFiltredProductList(filtredProducts);
+  }, [searchValue, productList]);
+
   return (
     <>
-      <Header />
+      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
       <NavSortPanel
         selectCategory={(category: FilterType) => setFilterCategory(category)}
         sortProducts={(sortData: SortType) => setSortData(sortData)}
       />
       <h1 className={styles.mainTitle}>WOK {filterCategory.name}</h1>
-      <ProductList productListData={productList} isLoading={isLoading} />
+      <ProductList productListData={searchValue.length ? filtredProductList : productList} isLoading={isLoading} />
     </>
   );
 };
