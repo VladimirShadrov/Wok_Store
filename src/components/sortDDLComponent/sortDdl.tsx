@@ -3,7 +3,7 @@ import styles from './sortDdl.module.scss';
 
 type SortType = {
   type: string;
-  direction: string;
+  order: string;
   directionIcon: string;
   sortKey: string;
 };
@@ -12,12 +12,12 @@ type SortDDLProps = { sortProducts: (sortType: SortType) => void };
 
 const SortDDL = ({ sortProducts }: SortDDLProps) => {
   const listItems = [
-    { type: 'Популярности', direction: 'asc', directionIcon: ' ↑', sortKey: 'ratio' },
-    { type: 'Популярности', direction: 'desc', directionIcon: ' ↓', sortKey: 'ratio' },
-    { type: 'Цене', direction: 'asc', directionIcon: ' ↑', sortKey: 'price' },
-    { type: 'Цене', direction: 'desc', directionIcon: ' ↓', sortKey: 'price' },
-    { type: 'Алфавиту', direction: 'asc', directionIcon: ' ↑', sortKey: 'title' },
-    { type: 'Алфавиту', direction: 'desc', directionIcon: ' ↓', sortKey: 'title' },
+    { type: 'Популярности', order: 'asc', directionIcon: ' ↑', sortKey: 'ratio' },
+    { type: 'Популярности', order: 'desc', directionIcon: ' ↓', sortKey: 'ratio' },
+    { type: 'Цене', order: 'asc', directionIcon: ' ↑', sortKey: 'price' },
+    { type: 'Цене', order: 'desc', directionIcon: ' ↓', sortKey: 'price' },
+    { type: 'Алфавиту', order: 'asc', directionIcon: ' ↑', sortKey: 'title' },
+    { type: 'Алфавиту', order: 'desc', directionIcon: ' ↓', sortKey: 'title' },
   ];
   const [activeIndex, setActiveIndex] = React.useState(1);
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);

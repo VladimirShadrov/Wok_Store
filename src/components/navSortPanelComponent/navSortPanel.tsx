@@ -9,7 +9,7 @@ type FilterType = {
 
 type SortType = {
   type: string;
-  direction: string;
+  order: string;
   directionIcon: string;
   sortKey: string;
 };

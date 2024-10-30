@@ -11,7 +11,7 @@ type FilterType = {
 
 type SortType = {
   type: string;
-  direction: string;
+  order: string;
   directionIcon: string;
   sortKey: string;
 };
@@ -30,8 +30,6 @@ type WokItemType = {
   ratio: number;
 };
 
-const URL = 'https://670f90c63e71518616587ae2.mockapi.io/categories';
-
 const MainPage = () => {
   const [filterCategory, setFilterCategory] = React.useState<FilterType>({
     name: 'Все',
@@ -39,12 +37,14 @@ const MainPage = () => {
   });
   const [sortData, setSortData] = React.useState<SortType>({
     type: 'Популярности',
-    direction: 'desc',
+    order: 'desc',
     directionIcon: ' ↓',
     sortKey: 'ratio',
   });
   const [productList, setProductList] = React.useState<WokItemType[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
+
+  const URL = `https://670f90c63e71518616587ae2.mockapi.io/categories?${filterCategory.filterKey}=${filterCategory.name}&sortBy=${sortData.sortKey}&order=${sortData.order}`;
 
   React.useEffect(() => {
     (async () => {
