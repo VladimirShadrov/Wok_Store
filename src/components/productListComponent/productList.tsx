@@ -3,8 +3,6 @@ import WokSceleton from '../productListSceleton/sceleton';
 import React from 'react';
 import styles from './productList.module.scss';
 
-const URL = 'https://670f90c63e71518616587ae2.mockapi.io/categories';
-
 type WokItemType = {
   id: number;
   title: string;
@@ -16,36 +14,20 @@ type WokItemType = {
   nutritionalValue: { [key: string]: string | number }[];
   description: string;
   category: string;
+  ratio: number;
 };
 
-const ProductList = () => {
-  const [wokData, setWokData] = React.useState<WokItemType[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+type ProductListProps = {
+  productListData: WokItemType[];
+  isLoading: boolean;
+};
 
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch(URL);
-
-        if (response.ok) {
-          const data = await response.json();
-          const myWokArray = data;
-          setWokData(myWokArray);
-          setIsLoading(false);
-        } else {
-          console.error(`Ошибка получения данных с сервера. Статус запроса: ${response.status}`);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, []);
-
+const ProductList = ({ productListData, isLoading }: ProductListProps) => {
   return (
     <div className={styles.wokList}>
       {isLoading
         ? [...new Array(8)].map((_, index) => <WokSceleton key={index} />)
-        : wokData.map((wokItem) => <ProductListItem key={wokItem.id} {...wokItem} />)}
+        : productListData.map((wokItem) => <ProductListItem key={wokItem.id} {...wokItem} />)}
     </div>
   );
 };

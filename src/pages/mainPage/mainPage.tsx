@@ -16,27 +16,65 @@ type SortType = {
   sortKey: string;
 };
 
+type WokItemType = {
+  id: number;
+  title: string;
+  weight: number;
+  price: number;
+  imgSmall: string;
+  imgBig: string;
+  ingridients: string[];
+  nutritionalValue: { [key: string]: string | number }[];
+  description: string;
+  category: string;
+  ratio: number;
+};
+
+const URL = 'https://670f90c63e71518616587ae2.mockapi.io/categories';
+
 const MainPage = () => {
-  const [selectedCategory, setSelectedCategory] = React.useState<FilterType>({
+  const [filterCategory, setFilterCategory] = React.useState<FilterType>({
     name: 'Все',
     filterKey: 'category',
   });
-  const [sortDirection, setSortDirection] = React.useState<SortType>({
+  const [sortData, setSortData] = React.useState<SortType>({
     type: 'Популярности',
     direction: 'desc',
     directionIcon: ' ↓',
     sortKey: 'ratio',
   });
+  const [productList, setProductList] = React.useState<WokItemType[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(URL);
+
+        if (response.ok) {
+          const data = await response.json();
+          const myWokArray = data;
+          setProductList(myWokArray);
+          setIsLoading(false);
+        } else {
+          console.error(`Ошибка получения данных с сервера. Статус запроса: ${response.status}`);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, [filterCategory, sortData]);
 
   return (
     <>
       <Header />
       <NavSortPanel
-        selectCategory={(category: FilterType) => setSelectedCategory(category)}
-        sortProducts={(sortData: SortType) => setSortDirection(sortData)}
+        selectCategory={(category: FilterType) => setFilterCategory(category)}
+        sortProducts={(sortData: SortType) => setSortData(sortData)}
       />
-      <h1 className={styles.mainTitle}>WOK {selectedCategory.name}</h1>
-      <ProductList />
+      <h1 className={styles.mainTitle}>WOK {filterCategory.name}</h1>
+      <ProductList productListData={productList} isLoading={isLoading} />
     </>
   );
 };
