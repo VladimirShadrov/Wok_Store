@@ -1,15 +1,27 @@
 import React from 'react';
 import styles from './navigation.module.scss';
 
+type FilterType = {
+  name: string;
+  filterKey: string;
+};
+
 type PropsType = {
-  selectCategory: (category: string) => void;
+  selectCategory: (category: FilterType) => void;
 };
 
 const Navigation = ({ selectCategory }: PropsType) => {
   const [activeMenuItemIndex, setActiveMenuItemIndex] = React.useState(0);
   const menuItemRefs = React.useRef<HTMLDivElement[]>([]);
   const floatingNavElement = React.useRef<HTMLDivElement>(null);
-  const menuItems = ['Все', 'Гречневая', 'Пшеничная', 'Яичная', 'Тяханы', 'Фунчозы'];
+  const menuItems: FilterType[] = [
+    { name: 'Все', filterKey: 'category' },
+    { name: 'Гречневая', filterKey: 'category' },
+    { name: 'Пшеничная', filterKey: 'category' },
+    { name: 'Яичная', filterKey: 'category' },
+    { name: 'Тяханы', filterKey: 'category' },
+    { name: 'Фунчозы', filterKey: 'category' },
+  ];
 
   const onMenuItemClick = (index: number) => {
     setActiveMenuItemIndex(index);
@@ -37,7 +49,7 @@ const Navigation = ({ selectCategory }: PropsType) => {
           ref={(el: HTMLDivElement) => (menuItemRefs.current[index] = el)}
           onClick={() => onMenuItemClick(index)}
           className={activeMenuItemIndex === index ? `${styles.navItem} ${styles.active}` : styles.navItem}>
-          {item}
+          {item.name}
         </div>
       ))}
       <div ref={floatingNavElement} className={styles.navItemActive}></div>
