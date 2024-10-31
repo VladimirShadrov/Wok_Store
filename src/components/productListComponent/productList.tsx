@@ -23,6 +23,8 @@ type ProductListProps = {
 };
 
 const ProductList = ({ productListData, isLoading }: ProductListProps) => {
+  console.log(1);
+
   return (
     <>
       <div className={styles.wokList}>
