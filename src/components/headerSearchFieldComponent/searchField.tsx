@@ -1,11 +1,9 @@
+import React from 'react';
 import styles from './searchField.module.scss';
+import { WokContext } from '../../context/wokContext';
 
-type SearchFieldProps = {
-  searchValue: string;
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-};
-
-const SearchField: React.FC<SearchFieldProps> = ({ searchValue, setSearchValue }) => {
+const SearchField = () => {
+  const { searchValue, setSearchValue } = React.useContext(WokContext);
   return (
     <div className={styles.searchWrapper}>
       <div className={styles.icon}></div>

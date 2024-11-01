@@ -3,6 +3,7 @@ import Header from '../../components/headerComponent/header';
 import NavSortPanel from '../../components/navSortPanelComponent/navSortPanel';
 import ProductList from '../../components/productListComponent/productList';
 import styles from './mainPage.module.scss';
+import { WokContext } from '../../context/wokContext';
 
 type FilterType = {
   name: string;
@@ -45,7 +46,7 @@ const MainPage = () => {
   const [filtredProductList, setFiltredProductList] = React.useState<WokItemType[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
-  const [searchValue, setSearchValue] = React.useState('');
+  const { searchValue } = React.useContext(WokContext);
 
   const filterParams = `${filterCategory.name === 'Все' ? '' : filterCategory.filterKey + '=' + filterCategory.name}`;
   const URL = `https://670f90c63e71518616587ae2.mockapi.io/categories?${filterParams}&sortBy=${sortData.sortKey}&order=${sortData.order}
@@ -78,7 +79,7 @@ const MainPage = () => {
 
   return (
     <>
-      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Header />
       <NavSortPanel
         selectCategory={(category: FilterType) => setFilterCategory(category)}
         sortProducts={(sortData: SortType) => setSortData(sortData)}

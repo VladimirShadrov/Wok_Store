@@ -3,6 +3,7 @@ import MainPage from './pages/mainPage/mainPage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ProductPage from './pages/productPage/productPage';
 import BasketPage from './pages/basketPage/basketPage';
+import { WokContextProvider } from './context/wokContext';
 
 const router = createBrowserRouter([
   {
@@ -25,9 +26,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="container">
-      <RouterProvider router={router} />
-    </div>
+    <WokContextProvider>
+      <div className="container">
+        <RouterProvider router={router} />
+      </div>
+    </WokContextProvider>
   );
 }
 
