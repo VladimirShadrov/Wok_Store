@@ -52,6 +52,8 @@ const MainPage = () => {
   const URL = `https://670f90c63e71518616587ae2.mockapi.io/categories?${filterParams}&sortBy=${sortData.sortKey}&order=${sortData.order}
   `;
 
+  console.log(1);
+
   React.useEffect(() => {
     (async () => {
       try {
