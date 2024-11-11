@@ -3,6 +3,11 @@ import WokSceleton from '../productListSceleton/sceleton';
 import React from 'react';
 import styles from './productList.module.scss';
 
+type FoodValueType = {
+  text: string;
+  value: number;
+};
+
 type WokItemType = {
   id: number;
   title: string;
@@ -11,7 +16,7 @@ type WokItemType = {
   imgSmall: string;
   imgBig: string;
   ingridients: string[];
-  nutritionalValue: { [key: string]: string | number }[];
+  nutritionalValue: FoodValueType[];
   description: string;
   category: string;
   ratio: number;
@@ -28,7 +33,7 @@ const ProductList = ({ productListData, isLoading }: ProductListProps) => {
       <div className={styles.wokList}>
         {isLoading
           ? [...new Array(8)].map((_, index) => <WokSceleton key={index} />)
-          : productListData.map((wokItem) => <ProductListItem key={wokItem.id} {...wokItem} />)}
+          : productListData.map((wokItem) => <ProductListItem key={wokItem.id} productData={wokItem} />)}
       </div>
       {!productListData.length && <h2 className={styles.notFound}>По заданным критериям поиска ничего не найдено</h2>}
     </>

@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ProductPage from './pages/productPage/productPage';
 import BasketPage from './pages/basketPage/basketPage';
 import { WokContextProvider } from './context/wokContext';
+import { store } from './store/store';
+import { Provider } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -27,9 +29,11 @@ const router = createBrowserRouter([
 function App() {
   return (
     <WokContextProvider>
-      <div className="container">
-        <RouterProvider router={router} />
-      </div>
+      <Provider store={store}>
+        <div className="container">
+          <RouterProvider router={router} />
+        </div>
+      </Provider>
     </WokContextProvider>
   );
 }

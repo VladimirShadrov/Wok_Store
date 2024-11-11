@@ -1,7 +1,11 @@
 import Counter from '../../components/counterComponent/counter';
 import Header from '../../components/headerComponent/header';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../store/store';
 
 const ProductPage = () => {
+  const productData = useSelector((state: RootState) => state.productData.productData);
+
   return (
     <>
       <Header />
@@ -13,20 +17,17 @@ const ProductPage = () => {
         </div>
         <div className="content">
           <div className="image">
-            <img src="/src/assets/images/1300/3-1300.jpg" alt="image" />
+            <img src={productData.imgBig} alt="image" />
           </div>
           <div className="description">
-            <h1 className="title">Удон с говядиной</h1>
+            <h1 className="title">{productData.title}</h1>
             <div className="description-block">
               <h4 className="block-title">Состав:</h4>
-              <div className="ingridient">Масло растительное</div>
-              <div className="ingridient">Говядина</div>
-              <div className="ingridient">Морковь</div>
-              <div className="ingridient">Лук репчатый</div>
-              <div className="ingridient">Перец болгарский</div>
-              <div className="ingridient">Кабачки</div>
-              <div className="ingridient">Соус "Чесночный"</div>
-              <div className="ingridient">Лапша пшеничная</div>
+              {productData.ingridients.map((ingridient) => (
+                <div className="ingridient" key={ingridient}>
+                  {ingridient}
+                </div>
+              ))}
             </div>
             <div className="description-block">
               <h4 className="block-title">Пищевая ценность на 100 г:</h4>

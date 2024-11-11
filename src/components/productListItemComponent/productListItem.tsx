@@ -1,20 +1,44 @@
 import { Link } from 'react-router-dom';
 import Counter from '../counterComponent/counter';
 import styles from './productListItem.module.scss';
+import { useDispatch } from 'react-redux';
+import { setProductData } from '../../store/slices/productSlice';
 
-type ProductType = {
-  id: number;
-  title: string;
-  imgSmall: string;
-  ingridients: string[];
-  weight: number;
-  price: number;
+type FoodValueType = {
+  text: string;
+  value: number;
 };
 
-const ProductListItem = ({ title, imgSmall, ingridients, weight, price }: ProductType) => {
+type ProductDataType = {
+  id: number;
+  title: string;
+  weight: number;
+  price: number;
+  imgSmall: string;
+  imgBig: string;
+  ingridients: string[];
+  nutritionalValue: FoodValueType[];
+  description: string;
+  category: string;
+  ratio: number;
+};
+
+type ProductType = {
+  productData: ProductDataType;
+};
+
+const ProductListItem = ({ productData }: ProductType) => {
+  const { title, imgSmall, ingridients, weight, price } = productData;
+  const dispatchProductData = useDispatch();
+
+  const saveProduct = () => {
+    localStorage.setItem('selectedProduct', JSON.stringify(productData));
+    dispatchProductData(setProductData());
+  };
+
   return (
     <div className={styles.wokItem}>
-      <Link to={`/product`}>
+      <Link to={`/product`} onClick={saveProduct}>
         <div className={styles.linkContainer}>
           <div className={styles.image}>
             <img src={imgSmall} alt="image" />

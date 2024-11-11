@@ -17,6 +17,11 @@ type SortType = {
   sortKey: string;
 };
 
+type FoodValueType = {
+  text: string;
+  value: number;
+};
+
 type WokItemType = {
   id: number;
   title: string;
@@ -25,7 +30,7 @@ type WokItemType = {
   imgSmall: string;
   imgBig: string;
   ingridients: string[];
-  nutritionalValue: { [key: string]: string | number }[];
+  nutritionalValue: FoodValueType[];
   description: string;
   category: string;
   ratio: number;
