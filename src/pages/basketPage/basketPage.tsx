@@ -40,7 +40,9 @@ const BasketPage = () => {
           </div>
 
           <div className="actions">
-            <button className="to-main-btn">На главную</button>
+            <Link to={'/'}>
+              <button className="to-main-btn">На главную</button>
+            </Link>
             <button className="pay-btn">Оплатить</button>
           </div>
         </div>
