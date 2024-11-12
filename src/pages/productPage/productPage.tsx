@@ -3,6 +3,7 @@ import Header from '../../components/headerComponent/header';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import styles from './productPage.module.scss';
+import { Link } from 'react-router-dom';
 
 const ProductPage = () => {
   const productData = useSelector((state: RootState) => state.productData.productData);
@@ -12,8 +13,12 @@ const ProductPage = () => {
       <Header />
       <div className={styles.productCard}>
         <div className={styles.breadcrumbs}>
-          <div className={styles.crumb}>Главная</div>
-          <div className={styles.crumb}>{productData.category}</div>
+          <div className={styles.crumb}>
+            <Link to={'/'}>Главная</Link>
+          </div>
+          <div className={styles.crumb}>
+            <Link to={'/'}>{productData.category}</Link>
+          </div>
           <div className={styles.crumb}>{productData.title}</div>
         </div>
         <div className={styles.content}>
