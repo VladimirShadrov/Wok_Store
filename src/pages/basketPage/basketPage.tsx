@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
-import Counter from '../../components/counterComponent/counter';
 import Header from '../../components/headerComponent/header';
+import OrderListItem from '../../components/orderListItemComponent/orderListItem';
 
 const BasketPage = () => {
   return (
     <>
       <Header />
       <div className="basket-content">
-        <div className="full" style={{ display: 'none' }}>
+        {/* Полная корзина */}
+        <div className="full">
           <div className="head">
             <div className="title">
               <div className="basket-icon">
@@ -22,36 +23,9 @@ const BasketPage = () => {
           </div>
 
           <div className="order-list">
-            <div className="order-item">
-              <div className="item-image">
-                <img src="src/assets/images/300/3-300.jpg" alt="image" />
-              </div>
-              <Counter />
-              <div className="item-price">369 ₽</div>
-              <button className="delete-btn" title="Удалить">
-                +
-              </button>
-            </div>
-            <div className="order-item">
-              <div className="item-image">
-                <img src="src/assets/images/300/3-300.jpg" alt="image" />
-              </div>
-              <Counter />
-              <div className="item-price">369 ₽</div>
-              <button className="delete-btn" title="Удалить">
-                +
-              </button>
-            </div>
-            <div className="order-item">
-              <div className="item-image">
-                <img src="src/assets/images/300/3-300.jpg" alt="image" />
-              </div>
-              <Counter />
-              <div className="item-price">369 ₽</div>
-              <button className="delete-btn" title="Удалить">
-                +
-              </button>
-            </div>
+            {[1, 2, 3].map((item) => (
+              <OrderListItem key={item} />
+            ))}
           </div>
 
           <div className="total">
@@ -71,6 +45,7 @@ const BasketPage = () => {
           </div>
         </div>
 
+        {/* Пустая корзина */}
         <div className="empty">
           <h2 className="empty-title">Ваша корзина пуста</h2>
           <p className="empy-text">Вероятнее всего вы ничего не успели заказать. Для того, чтобы заказать вернитесь на главную страницу</p>
