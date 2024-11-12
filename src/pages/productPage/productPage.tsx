@@ -3,13 +3,14 @@ import Header from '../../components/headerComponent/header';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import styles from './productPage.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, ScrollRestoration } from 'react-router-dom';
 
 const ProductPage = () => {
   const productData = useSelector((state: RootState) => state.productData.productData);
 
   return (
     <>
+      <ScrollRestoration />
       <Header />
       <div className={styles.productCard}>
         <div className={styles.breadcrumbs}>

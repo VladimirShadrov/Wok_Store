@@ -4,6 +4,7 @@ import NavSortPanel from '../../components/navSortPanelComponent/navSortPanel';
 import ProductList from '../../components/productListComponent/productList';
 import styles from './mainPage.module.scss';
 import { WokContext } from '../../context/wokContext';
+import { ScrollRestoration } from 'react-router-dom';
 
 type FilterType = {
   name: string;
@@ -84,6 +85,7 @@ const MainPage = () => {
 
   return (
     <>
+      <ScrollRestoration />
       <Header />
       <NavSortPanel
         selectCategory={(category: FilterType) => setFilterCategory(category)}
