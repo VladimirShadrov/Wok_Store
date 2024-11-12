@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './counter.module.scss';
 
-const Counter = () => {
+type CounterPropsType = {
+  callback: (count: number) => void;
+};
+
+const Counter = ({ callback }: CounterPropsType) => {
   const [count, setCount] = React.useState(1);
 
   const decreaseCounter = () => {
@@ -14,6 +18,11 @@ const Counter = () => {
   const increaseCounter = () => {
     setCount(count + 1);
   };
+
+  React.useEffect(() => {
+    callback(count);
+  }, [count]);
+
   return (
     <div className={styles.counter}>
       <div onClick={decreaseCounter} className={styles.decBtn}>

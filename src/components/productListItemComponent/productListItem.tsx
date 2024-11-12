@@ -3,6 +3,7 @@ import Counter from '../counterComponent/counter';
 import styles from './productListItem.module.scss';
 import { useDispatch } from 'react-redux';
 import { setProductData } from '../../store/slices/productSlice';
+import React from 'react';
 
 type FoodValueType = {
   text: string;
@@ -29,11 +30,18 @@ type ProductType = {
 
 const ProductListItem = ({ productData }: ProductType) => {
   const { title, imgSmall, ingridients, weight, price } = productData;
+  const [totalWeight, setTotalWeight] = React.useState(weight);
+  const [totalPrice, setTotalPrice] = React.useState(price);
   const dispatchProductData = useDispatch();
 
   const saveProduct = () => {
     localStorage.setItem('selectedProduct', JSON.stringify(productData));
     dispatchProductData(setProductData());
+  };
+
+  const onCounterChange = (count: number) => {
+    setTotalWeight(weight * count);
+    setTotalPrice(price * count);
   };
 
   return (
@@ -48,10 +56,10 @@ const ProductListItem = ({ productData }: ProductType) => {
         </div>
       </Link>
       <div className={styles.priceWrapper}>
-        <Counter />
+        <Counter callback={onCounterChange} />
         <div className={styles.price}>
-          <div className={styles.weight}>{weight} г</div>
-          <div className={styles.priceValue}>{price} ₽</div>
+          <div className={styles.weight}>{totalWeight} г</div>
+          <div className={styles.priceValue}>{totalPrice} ₽</div>
         </div>
       </div>
       <button className={styles.toCartBtn}>в корзину</button>

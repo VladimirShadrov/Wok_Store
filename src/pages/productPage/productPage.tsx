@@ -4,9 +4,17 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import styles from './productPage.module.scss';
 import { Link, ScrollRestoration } from 'react-router-dom';
+import React from 'react';
 
 const ProductPage = () => {
   const productData = useSelector((state: RootState) => state.productData.productData);
+  const [totalWeight, setTotalWeight] = React.useState(productData.weight);
+  const [totalPrice, setTotalPrice] = React.useState(productData.price);
+
+  const onCounterClick = (count: number) => {
+    setTotalWeight(productData.weight * count);
+    setTotalPrice(productData.price * count);
+  };
 
   return (
     <>
@@ -57,10 +65,10 @@ const ProductPage = () => {
             <div className={styles.orderBlock}>
               <div className={styles.wrapper}>
                 <div className={styles.price}>
-                  <div className={styles.weight}>{productData.weight} г</div>
-                  <h3 className={styles.priceValue}>{productData.price} ₽</h3>
+                  <div className={styles.weight}>{totalWeight.toLocaleString()} г</div>
+                  <h3 className={styles.priceValue}>{totalPrice.toLocaleString()} ₽</h3>
                 </div>
-                <Counter />
+                <Counter callback={onCounterClick} />
               </div>
               <button className={styles.basketBtn}>В корзину</button>
             </div>
