@@ -12,8 +12,8 @@ const ProductPage = () => {
       <div className="product-card">
         <div className="breadcrumbs">
           <div className="crumb">Главная</div>
-          <div className="crumb">Фунчозы</div>
-          <div className="crumb">Удон с говядиной</div>
+          <div className="crumb">{productData.category}</div>
+          <div className="crumb">{productData.title}</div>
         </div>
         <div className="content">
           <div className="image">
@@ -25,32 +25,21 @@ const ProductPage = () => {
               <h4 className="block-title">Состав:</h4>
               {productData.ingridients.map((ingridient) => (
                 <div className="ingridient" key={ingridient}>
-                  {ingridient}
+                  - {ingridient}
                 </div>
               ))}
             </div>
             <div className="description-block">
               <h4 className="block-title">Пищевая ценность на 100 г:</h4>
-              <div className="nutritional-item">
-                <div className="item-title">Энерг. ценность</div>
-                <div className="separator"></div>
-                <div className="item-value">160 ккал</div>
-              </div>
-              <div className="nutritional-item">
-                <div className="item-title">Белки</div>
-                <div className="separator"></div>
-                <div className="item-value">7 г</div>
-              </div>
-              <div className="nutritional-item">
-                <div className="item-title">Жиры</div>
-                <div className="separator"></div>
-                <div className="item-value">6 г</div>
-              </div>
-              <div className="nutritional-item">
-                <div className="item-title">Углеводы</div>
-                <div className="separator"></div>
-                <div className="item-value">18 г</div>
-              </div>
+              {productData.nutritionalValue.map((item, index) => (
+                <div className="nutritional-item" key={item.text}>
+                  <div className="item-title">{item.text}</div>
+                  <div className="separator"></div>
+                  <div className="item-value">
+                    {item.value} {index === 0 ? 'ккал' : 'г'}
+                  </div>
+                </div>
+              ))}
             </div>
 
             <div className="description-block">
@@ -61,8 +50,8 @@ const ProductPage = () => {
             <div className="order-block">
               <div className="wrapper">
                 <div className="price">
-                  <div className="weight">320 г</div>
-                  <h3 className="price-value">439 ₽</h3>
+                  <div className="weight">{productData.weight} г</div>
+                  <h3 className="price-value">{productData.price} ₽</h3>
                 </div>
                 <Counter />
               </div>
@@ -70,12 +59,8 @@ const ProductPage = () => {
             </div>
 
             <div className="product-presentation">
-              <h3 className="presentation-title">Удон с говядиной</h3>
-              <div className="presentation-text">
-                Удон с говядиной представляет собой подлинное произведение искусства, в котором смешано множество оттенков и вкусов. В качестве
-                лидирующего тона выступает нежно-желтый, который присущ яичной лапше. Помидоры вносят в палитру блюда красноватые тона, болгарский
-                перец – оранжевые оттенки, а соевый соус делает оттенок лапши немного приглушенным по интенсивности.
-              </div>
+              <h3 className="presentation-title">{productData.title}</h3>
+              <div className="presentation-text">{productData.description}</div>
             </div>
           </div>
         </div>
