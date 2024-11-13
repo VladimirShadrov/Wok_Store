@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '../../components/headerComponent/header';
-import NavSortPanel from '../../components/navSortPanelComponent/navSortPanel';
 import ProductList from '../../components/productListComponent/productList';
 import styles from './mainPage.module.scss';
 import { WokContext } from '../../context/wokContext';
 import { ScrollRestoration } from 'react-router-dom';
+import FilterSortPanel from '../../components/filterSortPanelComponent/filterSortPanel';
 
 type FilterType = {
   name: string;
@@ -87,7 +87,7 @@ const MainPage = () => {
     <>
       <ScrollRestoration />
       <Header />
-      <NavSortPanel
+      <FilterSortPanel
         selectCategory={(category: FilterType) => setFilterCategory(category)}
         sortProducts={(sortData: SortType) => setSortData(sortData)}
       />

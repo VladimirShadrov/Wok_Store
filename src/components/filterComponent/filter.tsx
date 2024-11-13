@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './navigation.module.scss';
+import styles from './filter.module.scss';
 
 type FilterType = {
   name: string;
@@ -10,7 +10,7 @@ type PropsType = {
   selectCategory: (category: FilterType) => void;
 };
 
-const Navigation = ({ selectCategory }: PropsType) => {
+const Filter = ({ selectCategory }: PropsType) => {
   const [activeMenuItemIndex, setActiveMenuItemIndex] = React.useState(0);
   const menuItemRefs = React.useRef<HTMLDivElement[]>([]);
   const floatingNavElement = React.useRef<HTMLDivElement>(null);
@@ -57,4 +57,4 @@ const Navigation = ({ selectCategory }: PropsType) => {
   );
 };
 
-export default Navigation;
+export default Filter;

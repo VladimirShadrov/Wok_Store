@@ -1,6 +1,6 @@
-import Navigation from '../navigationComponent/navigation';
+import Filter from '../filterComponent/filter';
 import SortDDL from '../sortDDLComponent/sortDdl';
-import styles from './navSortPanel.module.scss';
+import styles from './filterSortPanel.module.scss';
 
 type FilterType = {
   name: string;
@@ -19,13 +19,13 @@ type PropsType = {
   sortProducts: (sortType: SortType) => void;
 };
 
-const NavSortPanel = ({ selectCategory, sortProducts }: PropsType) => {
+const FilterSortPanel = ({ selectCategory, sortProducts }: PropsType) => {
   return (
     <div className={styles.navPanel}>
-      <Navigation selectCategory={(category: FilterType) => selectCategory(category)} />
+      <Filter selectCategory={(category: FilterType) => selectCategory(category)} />
       <SortDDL sortProducts={(sortType: SortType) => sortProducts(sortType)} />
     </div>
   );
 };
 
-export default NavSortPanel;
+export default FilterSortPanel;
