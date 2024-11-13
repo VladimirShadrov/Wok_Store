@@ -1,16 +1,14 @@
 import React from 'react';
 import styles from './filter.module.scss';
+import { useDispatch } from 'react-redux';
+import { setFilterCategory } from '../../store/slices/filterSlice';
 
 type FilterType = {
   name: string;
   filterKey: string;
 };
 
-type PropsType = {
-  selectCategory: (category: FilterType) => void;
-};
-
-const Filter = ({ selectCategory }: PropsType) => {
+const Filter = () => {
   const [activeMenuItemIndex, setActiveMenuItemIndex] = React.useState(0);
   const menuItemRefs = React.useRef<HTMLDivElement[]>([]);
   const floatingNavElement = React.useRef<HTMLDivElement>(null);
@@ -22,6 +20,7 @@ const Filter = ({ selectCategory }: PropsType) => {
     { name: 'Тяханы', filterKey: 'category' },
     { name: 'Фунчозы', filterKey: 'category' },
   ];
+  const dispatch = useDispatch();
 
   const onMenuItemClick = (index: number) => {
     setActiveMenuItemIndex(index);
@@ -34,7 +33,7 @@ const Filter = ({ selectCategory }: PropsType) => {
   };
 
   React.useEffect(() => {
-    selectCategory(menuItems[activeMenuItemIndex]);
+    dispatch(setFilterCategory(menuItems[activeMenuItemIndex]));
   }, [activeMenuItemIndex]);
 
   React.useEffect(() => {

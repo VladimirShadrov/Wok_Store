@@ -5,11 +5,8 @@ import styles from './mainPage.module.scss';
 import { WokContext } from '../../context/wokContext';
 import { ScrollRestoration } from 'react-router-dom';
 import FilterSortPanel from '../../components/filterSortPanelComponent/filterSortPanel';
-
-type FilterType = {
-  name: string;
-  filterKey: string;
-};
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 type SortType = {
   type: string;
@@ -38,10 +35,8 @@ type WokItemType = {
 };
 
 const MainPage = () => {
-  const [filterCategory, setFilterCategory] = React.useState<FilterType>({
-    name: 'Все',
-    filterKey: 'category',
-  });
+  const filterCategory = useSelector((state: RootState) => state.filter.filterCategory);
+
   const [sortData, setSortData] = React.useState<SortType>({
     type: 'Популярности',
     order: 'desc',
@@ -87,10 +82,7 @@ const MainPage = () => {
     <>
       <ScrollRestoration />
       <Header />
-      <FilterSortPanel
-        selectCategory={(category: FilterType) => setFilterCategory(category)}
-        sortProducts={(sortData: SortType) => setSortData(sortData)}
-      />
+      <FilterSortPanel sortProducts={(sortData: SortType) => setSortData(sortData)} />
       <h1 className={styles.mainTitle}>WOK {filterCategory.name}</h1>
       <ProductList productListData={searchValue.length ? filtredProductList : productList} isLoading={isLoading} />
     </>
