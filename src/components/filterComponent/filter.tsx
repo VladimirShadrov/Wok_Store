@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './filter.module.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFilterCategory } from '../../store/slices/filterSlice';
+import { RootState } from '../../store/store';
 
 type FilterType = {
   name: string;
@@ -9,7 +10,7 @@ type FilterType = {
 };
 
 const Filter = () => {
-  const [activeMenuItemIndex, setActiveMenuItemIndex] = React.useState(0);
+  const filterCategory = useSelector((state: RootState) => state.filter.filterCategory);
   const menuItemRefs = React.useRef<HTMLDivElement[]>([]);
   const floatingNavElement = React.useRef<HTMLDivElement>(null);
   const menuItems: FilterType[] = [
@@ -20,7 +21,13 @@ const Filter = () => {
     { name: 'Тяханы', filterKey: 'category' },
     { name: 'Фунчозы', filterKey: 'category' },
   ];
+  const [activeMenuItemIndex, setActiveMenuItemIndex] = React.useState(getIndex());
   const dispatch = useDispatch();
+
+  function getIndex() {
+    const index = menuItems.findIndex((item) => item.name === filterCategory.name);
+    return index > -1 ? index : 0;
+  }
 
   const onMenuItemClick = (index: number) => {
     setActiveMenuItemIndex(index);
@@ -37,7 +44,11 @@ const Filter = () => {
   }, [activeMenuItemIndex]);
 
   React.useEffect(() => {
-    onMenuItemClick(0);
+    const index = getIndex();
+
+    if (index > -1) {
+      onMenuItemClick(index);
+    }
   }, []);
 
   return (

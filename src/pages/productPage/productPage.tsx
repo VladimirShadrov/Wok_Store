@@ -1,10 +1,11 @@
 import Counter from '../../components/counterComponent/counter';
 import Header from '../../components/headerComponent/header';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import styles from './productPage.module.scss';
 import { Link, ScrollRestoration } from 'react-router-dom';
 import React from 'react';
+import { setFilterCategory } from '../../store/slices/filterSlice';
 
 const ProductPage = () => {
   const productData = useSelector((state: RootState) => state.productData.productData);
@@ -16,16 +17,22 @@ const ProductPage = () => {
     setTotalPrice(productData.price * count);
   };
 
+  const dispatch = useDispatch();
+
+  const onBreadCrumbClick = (category: string) => {
+    dispatch(setFilterCategory({ name: category, filterKey: 'category' }));
+  };
+
   return (
     <>
       <ScrollRestoration />
       <Header />
       <div className={styles.productCard}>
         <div className={styles.breadcrumbs}>
-          <div className={styles.crumb}>
+          <div className={styles.crumb} onClick={() => onBreadCrumbClick('Все')}>
             <Link to={'/'}>Главная</Link>
           </div>
-          <div className={styles.crumb}>
+          <div className={styles.crumb} onClick={() => onBreadCrumbClick(productData.category)}>
             <Link to={'/'}>{productData.category}</Link>
           </div>
           <div className={styles.crumb}>{productData.title}</div>
