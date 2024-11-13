@@ -35,7 +35,7 @@ const defaultProductState: ProductDataInterface = {
   category: '',
 };
 
-const savedProduct = localStorage.getItem('selectedProduct');
+const savedProduct = sessionStorage.getItem('selectedProduct');
 const initialState: ProductState = {
   productData: savedProduct ? JSON.parse(savedProduct) : defaultProductState,
 };
@@ -45,7 +45,7 @@ export const ProductSlice = createSlice({
   initialState,
   reducers: {
     setProductData: (state) => {
-      const productData = localStorage.getItem('selectedProduct');
+      const productData = sessionStorage.getItem('selectedProduct');
       if (productData) {
         state.productData = JSON.parse(productData);
       }

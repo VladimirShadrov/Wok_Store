@@ -35,7 +35,7 @@ const ProductListItem = ({ productData }: ProductType) => {
   const dispatchProductData = useDispatch();
 
   const saveProduct = () => {
-    localStorage.setItem('selectedProduct', JSON.stringify(productData));
+    sessionStorage.setItem('selectedProduct', JSON.stringify(productData));
     dispatchProductData(setProductData());
   };
 
