@@ -58,8 +58,8 @@ const ProductListItem = ({ productData }: ProductType) => {
       <div className={styles.priceWrapper}>
         <Counter callback={onCounterChange} />
         <div className={styles.price}>
-          <div className={styles.weight}>{totalWeight} г</div>
-          <div className={styles.priceValue}>{totalPrice} ₽</div>
+          <div className={styles.weight}>{totalWeight.toLocaleString()} г</div>
+          <div className={styles.priceValue}>{totalPrice.toLocaleString()} ₽</div>
         </div>
       </div>
       <button className={styles.toCartBtn}>в корзину</button>
