@@ -4,7 +4,12 @@ import logo from '../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
 
-const Header = () => {
+type HeaderPropsType = {
+  showSearch?: boolean;
+  showBasketBtn?: boolean;
+};
+
+const Header = ({ showSearch = true, showBasketBtn = true }: HeaderPropsType) => {
   return (
     /**
      * Добавить классы для разных страниц:
@@ -21,10 +26,12 @@ const Header = () => {
         <h1 className={styles.title}>Лапша Wok</h1>
         <p className={styles.text}>Вкуснейшая лапша, прямо из Китая</p>
       </div>
-      <SearchField />
-      <Link to={'/basket'}>
+      {showSearch && <SearchField />}
+      {showBasketBtn && (
+        // <Link to={'/basket'}>
         <BasketBtn />
-      </Link>
+        // </Link>
+      )}
     </header>
   );
 };

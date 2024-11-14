@@ -5,7 +5,7 @@ import OrderListItem from '../../components/orderListItemComponent/orderListItem
 const BasketPage = () => {
   return (
     <>
-      <Header />
+      <Header showBasketBtn={false} showSearch={false} />
       <div className="basket-content">
         {/* Полная корзина */}
         <div className="full">

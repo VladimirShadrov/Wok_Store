@@ -26,7 +26,7 @@ const ProductPage = () => {
   return (
     <>
       <ScrollRestoration />
-      <Header />
+      <Header showSearch={false} />
       <div className={styles.productCard}>
         <div className={styles.breadcrumbs}>
           <div className={styles.crumb} onClick={() => onBreadCrumbClick('Все')}>
