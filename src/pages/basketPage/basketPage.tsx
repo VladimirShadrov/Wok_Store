@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
 import Header from '../../components/headerComponent/header';
 import OrderListItem from '../../components/orderListItemComponent/orderListItem';
+import { useDispatch } from 'react-redux';
+import { setFilterCategory } from '../../store/slices/filterSlice';
 
 const BasketPage = () => {
+  const dispatch = useDispatch();
+  const onMainPageLinkClick = () => {
+    dispatch(setFilterCategory({ name: 'Все', filterKey: 'category' }));
+  };
   return (
     <>
       <Header showBasketBtn={false} showSearch={false} />
@@ -40,7 +46,7 @@ const BasketPage = () => {
           </div>
 
           <div className="actions">
-            <Link to={'/'}>
+            <Link to={'/'} onClick={onMainPageLinkClick}>
               <button className="to-main-btn">На главную</button>
             </Link>
             <button className="pay-btn">Оплатить</button>
@@ -55,7 +61,7 @@ const BasketPage = () => {
             <img src="src/assets/images/empty-bascket.svg" alt="image" />
           </div>
 
-          <Link to={'/'}>
+          <Link to={'/'} onClick={onMainPageLinkClick}>
             <button className="empty-btn">Вернуться на главную</button>
           </Link>
         </div>
