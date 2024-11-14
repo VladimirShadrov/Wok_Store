@@ -6,6 +6,7 @@ import BasketPage from './pages/basketPage/basketPage';
 import { WokContextProvider } from './context/wokContext';
 import { store } from './store/store';
 import { Provider } from 'react-redux';
+import NotFoundPage from './pages/notFoundPage/notFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <h1>Ничего не найдено</h1>,
+    element: <NotFoundPage />,
   },
 ]);
 
