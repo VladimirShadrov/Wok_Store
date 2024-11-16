@@ -3,8 +3,6 @@ import React from 'react';
 const useDebounce = <T extends (...args: unknown[]) => void>(callback: T, delay: number) => {
   const timerId = React.useRef(0);
 
-  console.log(1);
-
   const debouncedCallback = React.useCallback(
     (...args: Parameters<T>) => {
       if (timerId.current) {
