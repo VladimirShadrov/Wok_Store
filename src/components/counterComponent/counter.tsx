@@ -3,10 +3,11 @@ import styles from './counter.module.scss';
 
 type CounterPropsType = {
   callback: (count: number) => void;
+  initialCount?: number;
 };
 
-const Counter = ({ callback }: CounterPropsType) => {
-  const [count, setCount] = React.useState(1);
+const Counter = ({ callback, initialCount = 1 }: CounterPropsType) => {
+  const [count, setCount] = React.useState(initialCount);
 
   const decreaseCounter = () => {
     if (count <= 1) {
