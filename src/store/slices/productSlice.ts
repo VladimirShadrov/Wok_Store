@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface FoodValueInterface {
   text: string;
   value: number;
 }
 
-interface ProductDataInterface {
+interface ProductInterface {
   id: number;
   title: string;
   weight: number;
@@ -16,13 +16,11 @@ interface ProductDataInterface {
   nutritionalValue: FoodValueInterface[];
   description: string;
   category: string;
+  count: number;
+  ratio: number;
 }
 
-export interface ProductState {
-  productData: ProductDataInterface;
-}
-
-const defaultProductState: ProductDataInterface = {
+const defaultProductPageData: ProductInterface = {
   id: 0,
   title: '',
   weight: 0,
@@ -33,25 +31,38 @@ const defaultProductState: ProductDataInterface = {
   nutritionalValue: [],
   description: '',
   category: '',
+  count: 1,
+  ratio: 1,
 };
 
+export interface ProductStateInterface {
+  productPageData: ProductInterface;
+  productList: ProductInterface[];
+}
+
 const savedProduct = sessionStorage.getItem('selectedProduct');
-const initialState: ProductState = {
-  productData: savedProduct ? JSON.parse(savedProduct) : defaultProductState,
+const initialState: ProductStateInterface = {
+  productPageData: savedProduct ? JSON.parse(savedProduct) : defaultProductPageData,
+  productList: [],
 };
 
 export const ProductSlice = createSlice({
-  name: 'product',
+  name: 'products',
   initialState,
   reducers: {
-    setProductData: (state) => {
-      const productData = sessionStorage.getItem('selectedProduct');
-      if (productData) {
-        state.productData = JSON.parse(productData);
-      }
+    setProductPageData: (state, action: PayloadAction<number>) => {
+      console.log('Id выбранного продукта: ', action.payload);
+
+      // const productData = sessionStorage.getItem('selectedProduct');
+      // if (productData) {
+      //   state.productPageData = JSON.parse(productData);
+      // }
+    },
+    setProductList1: (state, action: PayloadAction<ProductInterface[]>) => {
+      state.productList = action.payload;
     },
   },
 });
 
-export const { setProductData } = ProductSlice.actions;
+export const { setProductPageData, setProductList1 } = ProductSlice.actions;
 export default ProductSlice.reducer;

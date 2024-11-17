@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Counter from '../counterComponent/counter';
 import styles from './productListItem.module.scss';
 import { useDispatch } from 'react-redux';
-import { setProductData } from '../../store/slices/productSlice';
+import { setProductPageData } from '../../store/slices/productSlice';
 import React from 'react';
 
 type FoodValueType = {
@@ -21,6 +21,7 @@ type ProductDataType = {
   nutritionalValue: FoodValueType[];
   description: string;
   category: string;
+  count: number;
   ratio: number;
 };
 
@@ -29,15 +30,10 @@ type ProductType = {
 };
 
 const ProductListItem = ({ productData }: ProductType) => {
-  const { title, imgSmall, ingridients, weight, price } = productData;
+  const { id, title, imgSmall, ingridients, weight, price, count } = productData;
   const [totalWeight, setTotalWeight] = React.useState(weight);
   const [totalPrice, setTotalPrice] = React.useState(price);
   const dispatchProductData = useDispatch();
-
-  const saveProduct = () => {
-    sessionStorage.setItem('selectedProduct', JSON.stringify(productData));
-    dispatchProductData(setProductData());
-  };
 
   const onCounterChange = (count: number) => {
     setTotalWeight(weight * count);
@@ -46,7 +42,7 @@ const ProductListItem = ({ productData }: ProductType) => {
 
   return (
     <div className={styles.wokItem}>
-      <Link to={`/product`} onClick={saveProduct}>
+      <Link to={`/product`} onClick={() => dispatchProductData(setProductPageData(id))}>
         <div className={styles.linkContainer}>
           <div className={styles.image}>
             <img src={imgSmall} alt="image" />
@@ -56,7 +52,7 @@ const ProductListItem = ({ productData }: ProductType) => {
         </div>
       </Link>
       <div className={styles.priceWrapper}>
-        <Counter callback={onCounterChange} />
+        <Counter callback={onCounterChange} initialCount={count} />
         <div className={styles.price}>
           <div className={styles.weight}>{totalWeight.toLocaleString()} г</div>
           <div className={styles.priceValue}>{totalPrice.toLocaleString()} ₽</div>

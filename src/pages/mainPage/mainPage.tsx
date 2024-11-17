@@ -5,8 +5,9 @@ import styles from './mainPage.module.scss';
 import { WokContext } from '../../context/wokContext';
 import { ScrollRestoration } from 'react-router-dom';
 import FilterSortPanel from '../../components/filterSortPanelComponent/filterSortPanel';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
+import { setProductList1 } from '../../store/slices/productSlice';
 
 type SortType = {
   type: string;
@@ -36,14 +37,14 @@ type WokItemType = {
 
 const MainPage = () => {
   const filterCategory = useSelector((state: RootState) => state.filter.filterCategory);
-
+  const productList = useSelector((state: RootState) => state.products.productList);
+  const dispatch = useDispatch();
   const [sortData, setSortData] = React.useState<SortType>({
     type: 'Популярности',
     order: 'desc',
     directionIcon: ' ↓',
     sortKey: 'ratio',
   });
-  const [productList, setProductList] = React.useState<WokItemType[]>([]);
   const [filtredProductList, setFiltredProductList] = React.useState<WokItemType[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -60,9 +61,9 @@ const MainPage = () => {
         const response = await fetch(URL);
 
         if (response.ok) {
-          const myWokArray = await response.json();
+          const wokDataArray = await response.json();
 
-          setProductList(myWokArray);
+          dispatch(setProductList1(wokDataArray));
           setIsLoading(false);
         } else {
           console.error(`Ошибка получения данных с сервера. Статус запроса: ${response.status}`);

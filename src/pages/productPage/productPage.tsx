@@ -8,7 +8,7 @@ import React from 'react';
 import { setFilterCategory } from '../../store/slices/filterSlice';
 
 const ProductPage = () => {
-  const productData = useSelector((state: RootState) => state.productData.productData);
+  const productData = useSelector((state: RootState) => state.products.productPageData);
   const [totalWeight, setTotalWeight] = React.useState(productData.weight);
   const [totalPrice, setTotalPrice] = React.useState(productData.price);
 
