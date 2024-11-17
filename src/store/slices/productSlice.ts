@@ -40,9 +40,8 @@ export interface ProductStateInterface {
   productList: ProductInterface[];
 }
 
-const savedProduct = sessionStorage.getItem('selectedProduct');
 const initialState: ProductStateInterface = {
-  productPageData: savedProduct ? JSON.parse(savedProduct) : defaultProductPageData,
+  productPageData: defaultProductPageData,
   productList: [],
 };
 
@@ -51,18 +50,18 @@ export const ProductSlice = createSlice({
   initialState,
   reducers: {
     setProductPageData: (state, action: PayloadAction<number>) => {
-      console.log('Id выбранного продукта: ', action.payload);
+      const productData = state.productList.find((product) => product.id === action.payload);
 
-      // const productData = sessionStorage.getItem('selectedProduct');
-      // if (productData) {
-      //   state.productPageData = JSON.parse(productData);
-      // }
+      if (productData) {
+        state.productPageData = productData;
+      }
     },
-    setProductList1: (state, action: PayloadAction<ProductInterface[]>) => {
+    setProductList: (state, action: PayloadAction<ProductInterface[]>) => {
       state.productList = action.payload;
+      sessionStorage.setItem('productList', JSON.stringify(state.productList));
     },
   },
 });
 
-export const { setProductPageData, setProductList1 } = ProductSlice.actions;
+export const { setProductPageData, setProductList } = ProductSlice.actions;
 export default ProductSlice.reducer;

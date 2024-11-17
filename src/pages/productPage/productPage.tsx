@@ -6,6 +6,7 @@ import styles from './productPage.module.scss';
 import { Link, ScrollRestoration } from 'react-router-dom';
 import React from 'react';
 import { setFilterCategory } from '../../store/slices/filterSlice';
+import { setProductList, setProductPageData } from '../../store/slices/productSlice';
 
 const ProductPage = () => {
   const productData = useSelector((state: RootState) => state.products.productPageData);
@@ -22,6 +23,16 @@ const ProductPage = () => {
   const onBreadCrumbClick = (category: string) => {
     dispatch(setFilterCategory({ name: category, filterKey: 'category' }));
   };
+
+  React.useEffect(() => {
+    const productPageId = sessionStorage.getItem('productPageId');
+    const productList = sessionStorage.getItem('productList');
+
+    if (productPageId && productList) {
+      dispatch(setProductList(JSON.parse(productList)));
+      dispatch(setProductPageData(+productPageId));
+    }
+  }, []);
 
   return (
     <>
@@ -75,7 +86,7 @@ const ProductPage = () => {
                   <div className={styles.weight}>{totalWeight.toLocaleString()} г</div>
                   <h3 className={styles.priceValue}>{totalPrice.toLocaleString()} ₽</h3>
                 </div>
-                <Counter callback={onCounterClick} />
+                <Counter callback={onCounterClick} initialCount={productData.count} />
               </div>
               <button className={styles.basketBtn}>В корзину</button>
             </div>

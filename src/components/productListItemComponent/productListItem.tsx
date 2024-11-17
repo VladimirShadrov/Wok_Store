@@ -40,9 +40,14 @@ const ProductListItem = ({ productData }: ProductType) => {
     setTotalPrice(price * count);
   };
 
+  const onLinkClick = () => {
+    sessionStorage.setItem('productPageId', id.toString());
+    dispatchProductData(setProductPageData(id));
+  };
+
   return (
     <div className={styles.wokItem}>
-      <Link to={`/product`} onClick={() => dispatchProductData(setProductPageData(id))}>
+      <Link to={`/product`} onClick={onLinkClick}>
         <div className={styles.linkContainer}>
           <div className={styles.image}>
             <img src={imgSmall} alt="image" />

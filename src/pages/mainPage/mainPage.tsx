@@ -7,7 +7,7 @@ import { ScrollRestoration } from 'react-router-dom';
 import FilterSortPanel from '../../components/filterSortPanelComponent/filterSortPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
-import { setProductList1 } from '../../store/slices/productSlice';
+import { setProductList } from '../../store/slices/productSlice';
 
 type SortType = {
   type: string;
@@ -63,7 +63,7 @@ const MainPage = () => {
         if (response.ok) {
           const wokDataArray = await response.json();
 
-          dispatch(setProductList1(wokDataArray));
+          dispatch(setProductList(wokDataArray));
           setIsLoading(false);
         } else {
           console.error(`Ошибка получения данных с сервера. Статус запроса: ${response.status}`);
