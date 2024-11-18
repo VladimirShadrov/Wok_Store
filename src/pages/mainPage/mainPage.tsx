@@ -37,7 +37,7 @@ type WokItemType = {
 
 const MainPage = () => {
   const filterCategory = useSelector((state: RootState) => state.filter.filterCategory);
-  const productList = useSelector((state: RootState) => state.products.productList);
+  const { productList, productsWithChangedCounters } = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch();
   const [sortData, setSortData] = React.useState<SortType>({
     type: 'Популярности',
@@ -62,6 +62,15 @@ const MainPage = () => {
 
         if (response.ok) {
           const wokDataArray = await response.json();
+
+          if (productsWithChangedCounters.length) {
+            productsWithChangedCounters.forEach((product) => {
+              const productIndex = wokDataArray.findIndex((wokData: WokItemType) => wokData.id === product.id);
+              if (productIndex > -1) {
+                wokDataArray[productIndex].count = product.count;
+              }
+            });
+          }
 
           dispatch(setProductList(wokDataArray));
           setIsLoading(false);

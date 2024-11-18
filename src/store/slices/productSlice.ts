@@ -38,11 +38,16 @@ const defaultProductPageData: ProductInterface = {
 export interface ProductStateInterface {
   productPageData: ProductInterface;
   productList: ProductInterface[];
+  productsWithChangedCounters: ProductInterface[];
 }
 
+const productsWithChangedCounters = sessionStorage.getItem('productsWithChangedCounters')
+  ? JSON.parse(sessionStorage.getItem('productsWithChangedCounters') as string)
+  : [];
 const initialState: ProductStateInterface = {
   productPageData: defaultProductPageData,
   productList: [],
+  productsWithChangedCounters: productsWithChangedCounters,
 };
 
 export const ProductSlice = createSlice({
@@ -60,8 +65,20 @@ export const ProductSlice = createSlice({
       state.productList = action.payload;
       sessionStorage.setItem('productList', JSON.stringify(state.productList));
     },
+    setProductCount: (state, action: PayloadAction<{ id: number; count: number }>) => {
+      const { id, count } = action.payload;
+      const product = state.productList.find((product) => product.id === id);
+
+      if (product) {
+        product.count = count;
+      }
+    },
+    setProductsListWithChangedCounters: (state) => {
+      state.productsWithChangedCounters = state.productList.filter((product) => product.count > 1);
+      sessionStorage.setItem('productsWithChangedCounters', JSON.stringify(state.productsWithChangedCounters));
+    },
   },
 });
 
-export const { setProductPageData, setProductList } = ProductSlice.actions;
+export const { setProductPageData, setProductList, setProductCount, setProductsListWithChangedCounters } = ProductSlice.actions;
 export default ProductSlice.reducer;

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Counter from '../counterComponent/counter';
 import styles from './productListItem.module.scss';
 import { useDispatch } from 'react-redux';
-import { setProductPageData } from '../../store/slices/productSlice';
+import { setProductCount, setProductPageData, setProductsListWithChangedCounters } from '../../store/slices/productSlice';
 import React from 'react';
 
 type FoodValueType = {
@@ -38,11 +38,14 @@ const ProductListItem = ({ productData }: ProductType) => {
   const onCounterChange = (count: number) => {
     setTotalWeight(weight * count);
     setTotalPrice(price * count);
+
+    dispatchProductData(setProductCount({ id, count }));
   };
 
   const onLinkClick = () => {
     sessionStorage.setItem('productPageId', id.toString());
     dispatchProductData(setProductPageData(id));
+    dispatchProductData(setProductsListWithChangedCounters());
   };
 
   return (
