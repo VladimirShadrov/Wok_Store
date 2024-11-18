@@ -6,19 +6,20 @@ import styles from './productPage.module.scss';
 import { Link, ScrollRestoration } from 'react-router-dom';
 import React from 'react';
 import { setFilterCategory } from '../../store/slices/filterSlice';
-import { setProductList, setProductPageData } from '../../store/slices/productSlice';
+import { setProductCount, setProductList, setProductPageData, setProductsListWithChangedCounters } from '../../store/slices/productSlice';
 
 const ProductPage = () => {
   const productData = useSelector((state: RootState) => state.products.productPageData);
   const [totalWeight, setTotalWeight] = React.useState(productData.weight);
   const [totalPrice, setTotalPrice] = React.useState(productData.price);
+  const dispatch = useDispatch();
 
   const onCounterClick = (count: number) => {
     setTotalWeight(productData.weight * count);
     setTotalPrice(productData.price * count);
+    dispatch(setProductCount({ id: productData.id, count: count }));
+    dispatch(setProductsListWithChangedCounters());
   };
-
-  const dispatch = useDispatch();
 
   const onBreadCrumbClick = (category: string) => {
     dispatch(setFilterCategory({ name: category, filterKey: 'category' }));
@@ -32,6 +33,8 @@ const ProductPage = () => {
       dispatch(setProductList(JSON.parse(productList)));
       dispatch(setProductPageData(+productPageId));
     }
+
+    console.log();
   }, []);
 
   return (
