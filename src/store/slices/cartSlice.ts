@@ -34,7 +34,12 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<ProductInterface>) => {
-      state.products.push(action.payload);
+      const productIndex = state.products.findIndex((product) => product.id === action.payload.id);
+
+      if (productIndex === -1) {
+        state.products.push(action.payload);
+        sessionStorage.setItem('cartData', JSON.stringify(state.products));
+      }
     },
   },
 });
