@@ -39,8 +39,6 @@ const ProductPage = () => {
     if (productData) {
       setTotalWeight(productData.weight * productData.count);
       setTotalPrice(productData.price * productData.count);
-
-      console.log('Count: ', productData.count);
     }
   }, [productData]);
 
