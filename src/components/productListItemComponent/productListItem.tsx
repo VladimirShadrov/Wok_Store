@@ -40,12 +40,12 @@ const ProductListItem = ({ productData }: ProductType) => {
     setTotalPrice(price * count);
 
     dispatchProductData(setProductCount({ id, count }));
+    dispatchProductData(setProductsListWithChangedCounters());
   };
 
   const onLinkClick = () => {
     sessionStorage.setItem('productPageId', id.toString());
     dispatchProductData(setProductPageData(id));
-    dispatchProductData(setProductsListWithChangedCounters());
   };
 
   return (

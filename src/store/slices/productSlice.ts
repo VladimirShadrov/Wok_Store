@@ -71,6 +71,7 @@ export const ProductSlice = createSlice({
 
       if (product) {
         product.count = count;
+        sessionStorage.setItem('productList', JSON.stringify(state.productList));
       }
     },
     setProductsListWithChangedCounters: (state) => {

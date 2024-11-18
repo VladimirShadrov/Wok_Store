@@ -10,8 +10,8 @@ import { setProductCount, setProductList, setProductPageData, setProductsListWit
 
 const ProductPage = () => {
   const productData = useSelector((state: RootState) => state.products.productPageData);
-  const [totalWeight, setTotalWeight] = React.useState(productData.weight);
-  const [totalPrice, setTotalPrice] = React.useState(productData.price);
+  const [totalWeight, setTotalWeight] = React.useState(productData.weight * productData.count);
+  const [totalPrice, setTotalPrice] = React.useState(productData.price * productData.count);
   const dispatch = useDispatch();
 
   const onCounterClick = (count: number) => {
@@ -33,9 +33,16 @@ const ProductPage = () => {
       dispatch(setProductList(JSON.parse(productList)));
       dispatch(setProductPageData(+productPageId));
     }
+  }, [dispatch]);
 
-    console.log();
-  }, []);
+  React.useEffect(() => {
+    if (productData) {
+      setTotalWeight(productData.weight * productData.count);
+      setTotalPrice(productData.price * productData.count);
+
+      console.log('Count: ', productData.count);
+    }
+  }, [productData]);
 
   return (
     <>

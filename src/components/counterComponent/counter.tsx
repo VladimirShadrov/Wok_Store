@@ -24,6 +24,10 @@ const Counter = ({ callback, initialCount = 1 }: CounterPropsType) => {
     callback(count);
   }, [count]);
 
+  React.useEffect(() => {
+    setCount(initialCount);
+  }, [initialCount]);
+
   return (
     <div className={styles.counter}>
       <div onClick={decreaseCounter} className={styles.decBtn}>
