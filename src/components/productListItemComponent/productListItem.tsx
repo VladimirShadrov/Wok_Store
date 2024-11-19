@@ -52,14 +52,10 @@ const ProductListItem = ({ productData }: ProductType) => {
   };
 
   const onToCartBtnClick = () => {
-    //const cartProductsList: ProductDataType[] = JSON.parse(sessionStorage.getItem('cartData') as string);
     const productIndex = cartData.findIndex((product) => product.id === id);
-
-    console.log('Cart data: ', cartData, productIndex);
 
     if (productIndex === -1) {
       dispatchProductData(addToCart(productData));
-      console.log('Отправляю в стор: ', productData);
     } else {
       dispatchProductData(setProductCount({ id, count: count + 1 }));
     }
