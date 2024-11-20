@@ -49,8 +49,6 @@ export const cartSlice = createSlice({
 
       updateTotals(state);
       sessionStorage.setItem('cartData', JSON.stringify(state.products));
-
-      console.log('Count: ', state.totalCount, 'Price: ', state.totalPrice);
     },
     updateProductCountAndPrice: (state, action: PayloadAction<{ id: number; count: number }>) => {
       const productIndex = state.products.findIndex((product) => product.id === action.payload.id);
@@ -63,7 +61,6 @@ export const cartSlice = createSlice({
 
       updateTotals(state);
       sessionStorage.setItem('cartData', JSON.stringify(state.products));
-      console.log('Count: ', state.totalCount, 'Price: ', state.totalPrice, 'index: ', productIndex);
     },
   },
 });

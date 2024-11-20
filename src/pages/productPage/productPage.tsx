@@ -7,9 +7,11 @@ import { Link, ScrollRestoration } from 'react-router-dom';
 import React from 'react';
 import { setFilterCategory } from '../../store/slices/filterSlice';
 import { setProductCount, setProductList, setProductPageData, setProductsListWithChangedCounters } from '../../store/slices/productSlice';
+import { addToCart, updateProductCountAndPrice } from '../../store/slices/cartSlice';
 
 const ProductPage = () => {
   const productData = useSelector((state: RootState) => state.products.productPageData);
+  const cartProducts = useSelector((state: RootState) => state.cart.products);
   const [totalWeight, setTotalWeight] = React.useState(productData.weight * productData.count);
   const [totalPrice, setTotalPrice] = React.useState(productData.price * productData.count);
   const dispatch = useDispatch();
@@ -19,10 +21,23 @@ const ProductPage = () => {
     setTotalPrice(productData.price * count);
     dispatch(setProductCount({ id: productData.id, count: count }));
     dispatch(setProductsListWithChangedCounters());
+    dispatch(updateProductCountAndPrice({ id: productData.id, count: count }));
   };
 
   const onBreadCrumbClick = (category: string) => {
     dispatch(setFilterCategory({ name: category, filterKey: 'category' }));
+  };
+
+  const onToCartBtnClick = () => {
+    const productIndex = cartProducts.findIndex((product) => product.id === productData.id);
+
+    if (productIndex === -1) {
+      dispatch(addToCart(productData));
+    } else {
+      dispatch(setProductCount({ id: productData.id, count: productData.count + 1 }));
+      dispatch(setProductsListWithChangedCounters());
+      dispatch(addToCart(productData));
+    }
   };
 
   React.useEffect(() => {
@@ -96,7 +111,9 @@ const ProductPage = () => {
                 </div>
                 <Counter callback={onCounterClick} initialCount={productData.count} />
               </div>
-              <button className={styles.basketBtn}>В корзину</button>
+              <button onClick={onToCartBtnClick} className={styles.basketBtn}>
+                В корзину
+              </button>
             </div>
 
             <div className={styles.productPresentation}>

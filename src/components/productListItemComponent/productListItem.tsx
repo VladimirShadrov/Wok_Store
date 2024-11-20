@@ -35,7 +35,7 @@ const ProductListItem = ({ productData }: ProductType) => {
   const { id, title, imgSmall, ingridients, weight, price, count } = productData;
   const [totalWeight, setTotalWeight] = React.useState(weight);
   const [totalPrice, setTotalPrice] = React.useState(price);
-  const cartData = useSelector((state: RootState) => state.cart.products);
+  const cartProducts = useSelector((state: RootState) => state.cart.products);
   const dispatchProductData = useDispatch();
 
   const onCounterChange = (count: number) => {
@@ -53,7 +53,7 @@ const ProductListItem = ({ productData }: ProductType) => {
   };
 
   const onToCartBtnClick = () => {
-    const productIndex = cartData.findIndex((product) => product.id === id);
+    const productIndex = cartProducts.findIndex((product) => product.id === id);
 
     if (productIndex === -1) {
       dispatchProductData(addToCart(productData));
