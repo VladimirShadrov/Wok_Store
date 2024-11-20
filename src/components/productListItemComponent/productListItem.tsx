@@ -4,7 +4,7 @@ import styles from './productListItem.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { setProductCount, setProductPageData, setProductsListWithChangedCounters } from '../../store/slices/productSlice';
 import React from 'react';
-import { addToCart } from '../../store/slices/cartSlice';
+import { addToCart, updateProductCountAndPrice } from '../../store/slices/cartSlice';
 import { RootState } from '../../store/store';
 
 type FoodValueType = {
@@ -44,6 +44,7 @@ const ProductListItem = ({ productData }: ProductType) => {
 
     dispatchProductData(setProductCount({ id, count }));
     dispatchProductData(setProductsListWithChangedCounters());
+    dispatchProductData(updateProductCountAndPrice({ id, count }));
   };
 
   const onLinkClick = () => {
@@ -58,8 +59,15 @@ const ProductListItem = ({ productData }: ProductType) => {
       dispatchProductData(addToCart(productData));
     } else {
       dispatchProductData(setProductCount({ id, count: count + 1 }));
+      dispatchProductData(setProductsListWithChangedCounters());
+      dispatchProductData(addToCart(productData));
     }
   };
+
+  React.useEffect(() => {
+    setTotalWeight(weight * count);
+    setTotalPrice(price * count);
+  }, [count]);
 
   return (
     <div className={styles.wokItem}>

@@ -23,10 +23,15 @@ interface ProductInterface {
 
 interface CartState {
   products: ProductInterface[];
+  totalCount: number;
+  totalPrice: number;
 }
 
+const storageProductsData = sessionStorage.getItem('cartData') ? JSON.parse(sessionStorage.getItem('cartData') as string) : [];
 const initialState: CartState = {
-  products: [],
+  products: storageProductsData,
+  totalCount: 0,
+  totalPrice: 0,
 };
 
 export const cartSlice = createSlice({
@@ -38,11 +43,35 @@ export const cartSlice = createSlice({
 
       if (productIndex === -1) {
         state.products.push(action.payload);
-        sessionStorage.setItem('cartData', JSON.stringify(state.products));
+      } else {
+        state.products[productIndex].count = action.payload.count + 1;
       }
+
+      updateTotals(state);
+      sessionStorage.setItem('cartData', JSON.stringify(state.products));
+
+      console.log('Count: ', state.totalCount, 'Price: ', state.totalPrice);
+    },
+    updateProductCountAndPrice: (state, action: PayloadAction<{ id: number; count: number }>) => {
+      const productIndex = state.products.findIndex((product) => product.id === action.payload.id);
+
+      if (productIndex === -1) {
+        return;
+      }
+
+      state.products[productIndex].count = action.payload.count;
+
+      updateTotals(state);
+      sessionStorage.setItem('cartData', JSON.stringify(state.products));
+      console.log('Count: ', state.totalCount, 'Price: ', state.totalPrice, 'index: ', productIndex);
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateProductCountAndPrice } = cartSlice.actions;
 export default cartSlice.reducer;
+
+function updateTotals(state: CartState) {
+  state.totalCount = state.products.length;
+  state.totalPrice = state.products.reduce((total, product) => total + product.price * product.count, 0);
+}
