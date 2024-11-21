@@ -62,13 +62,20 @@ export const cartSlice = createSlice({
       updateTotals(state);
       sessionStorage.setItem('cartData', JSON.stringify(state.products));
     },
-    removeFromCart: (state, action: PayloadAction<number>) => {
+    removeProductFromCart: (state, action: PayloadAction<number>) => {
       state.products = state.products.filter((product) => product.id !== action.payload);
+      updateTotals(state);
+      sessionStorage.setItem('cartData', JSON.stringify(state.products));
+    },
+    clearCart: (state) => {
+      state.products = [];
+      updateTotals(state);
+      sessionStorage.setItem('cartData', JSON.stringify(state.products));
     },
   },
 });
 
-export const { addToCart, updateProductCountAndPrice, removeFromCart } = cartSlice.actions;
+export const { addToCart, updateProductCountAndPrice, removeProductFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
 
 function updateTotals(state: CartState) {

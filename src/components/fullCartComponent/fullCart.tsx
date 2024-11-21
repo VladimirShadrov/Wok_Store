@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import OrderListItem from '../orderListItemComponent/orderListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilterCategory } from '../../store/slices/filterSlice';
+import { clearCart } from '../../store/slices/cartSlice';
 import { RootState } from '../../store/store';
 import styles from './fullCart.module.scss';
 
@@ -33,6 +34,10 @@ const FullCart = () => {
     dispatch(setFilterCategory({ name: 'Все', filterKey: 'category' }));
   };
 
+  const onClearBtnClick = () => {
+    dispatch(clearCart());
+  };
+
   return (
     <div className={styles.full}>
       <div className={styles.head}>
@@ -44,7 +49,9 @@ const FullCart = () => {
         </div>
         <button className={styles.cleanBasketBtn}>
           <img className={styles.trashIcon} src="src\assets\images\trash.svg" alt="image" />
-          <span className={styles.cleanBtnText}>Очистить корзину</span>
+          <span onClick={onClearBtnClick} className={styles.cleanBtnText}>
+            Очистить корзину
+          </span>
         </button>
       </div>
 

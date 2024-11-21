@@ -2,7 +2,7 @@ import React from 'react';
 import Counter from '../counterComponent/counter';
 import styles from './orderListItem.module.scss';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../../store/slices/cartSlice';
+import { removeProductFromCart } from '../../store/slices/cartSlice';
 
 interface FoodValueInterface {
   text: string;
@@ -33,7 +33,7 @@ const OrderListItem = ({ id, price, count, imgSmall }: ProductInterface) => {
   };
 
   const onDeleteBtnClick = () => {
-    dispatch(removeFromCart(id));
+    dispatch(removeProductFromCart(id));
   };
 
   React.useEffect(() => {
