@@ -7,6 +7,8 @@ import { RootState } from '../../store/store';
 import styles from './fullCart.module.scss';
 import React from 'react';
 import { setProductCount, setProductsListWithChangedCounters } from '../../store/slices/productSlice';
+import backetBlack from '../../assets/images/basket-black.svg';
+import trashIcon from '../../assets/images/trash.svg';
 
 interface FoodValueInterface {
   text: string;
@@ -56,12 +58,12 @@ const FullCart = () => {
       <div className={styles.head}>
         <div className={styles.title}>
           <div className={styles.basketIcon}>
-            <img src="src/assets/images/basket-black.svg" alt="image" />
+            <img src={backetBlack} alt="image" />
             <h2 className={styles.title}>Корзина</h2>
           </div>
         </div>
         <button className={styles.cleanBasketBtn}>
-          <img className={styles.trashIcon} src="src\assets\images\trash.svg" alt="image" />
+          <img className={styles.trashIcon} src={trashIcon} alt="image" />
           <span onClick={onClearBtnClick} className={styles.cleanBtnText}>
             Очистить корзину
           </span>
