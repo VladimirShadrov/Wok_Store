@@ -2,7 +2,8 @@ import React from 'react';
 import Counter from '../counterComponent/counter';
 import styles from './orderListItem.module.scss';
 import { useDispatch } from 'react-redux';
-import { removeProductFromCart } from '../../store/slices/cartSlice';
+import { removeProductFromCart, updateProductCountAndPrice } from '../../store/slices/cartSlice';
+import { setProductCount, setProductsListWithChangedCounters } from '../../store/slices/productSlice';
 
 interface FoodValueInterface {
   text: string;
@@ -30,6 +31,9 @@ const OrderListItem = ({ id, price, count, imgSmall, title }: ProductInterface) 
 
   const onCounterChange = (count: number) => {
     setTotalPrice(price * count);
+    dispatch(updateProductCountAndPrice({ id, count }));
+    dispatch(setProductCount({ id, count }));
+    dispatch(setProductsListWithChangedCounters());
   };
 
   const onDeleteBtnClick = () => {

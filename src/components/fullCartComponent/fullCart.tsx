@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import OrderListItem from '../orderListItemComponent/orderListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilterCategory } from '../../store/slices/filterSlice';
-import { clearCart } from '../../store/slices/cartSlice';
+import { clearCart, setTotalPapams } from '../../store/slices/cartSlice';
 import { RootState } from '../../store/store';
 import styles from './fullCart.module.scss';
+import React from 'react';
 
 interface FoodValueInterface {
   text: string;
@@ -37,6 +38,10 @@ const FullCart = () => {
   const onClearBtnClick = () => {
     dispatch(clearCart());
   };
+
+  React.useEffect(() => {
+    dispatch(setTotalPapams());
+  }, []);
 
   return (
     <div className={styles.full}>

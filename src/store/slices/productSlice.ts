@@ -73,6 +73,8 @@ export const ProductSlice = createSlice({
         product.count = count;
         state.productPageData.count = count;
         sessionStorage.setItem('productList', JSON.stringify(state.productList));
+
+        console.log('Product: ', product);
       }
     },
     setProductsListWithChangedCounters: (state) => {
