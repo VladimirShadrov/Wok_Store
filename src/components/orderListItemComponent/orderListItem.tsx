@@ -1,23 +1,53 @@
 import React from 'react';
 import Counter from '../counterComponent/counter';
 import styles from './orderListItem.module.scss';
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../../store/slices/cartSlice';
 
-const OrderListItem = () => {
-  const price = 369;
+interface FoodValueInterface {
+  text: string;
+  value: number;
+}
+
+interface ProductInterface {
+  id: number;
+  title: string;
+  weight: number;
+  price: number;
+  imgSmall: string;
+  imgBig: string;
+  ingridients: string[];
+  nutritionalValue: FoodValueInterface[];
+  description: string;
+  category: string;
+  count: number;
+  ratio: number;
+}
+
+const OrderListItem = ({ id, price, count, imgSmall }: ProductInterface) => {
   const [totalPrice, setTotalPrice] = React.useState(price);
+  const dispatch = useDispatch();
 
   const onCounterChange = (count: number) => {
     setTotalPrice(price * count);
   };
 
+  const onDeleteBtnClick = () => {
+    dispatch(removeFromCart(id));
+  };
+
+  React.useEffect(() => {
+    setTotalPrice(price * count);
+  }, []);
+
   return (
     <div className={styles.orderItem}>
       <div className={styles.itemImage}>
-        <img src="images/products/1-300.jpg" alt="image" />
+        <img src={imgSmall} alt="image" />
       </div>
-      <Counter callback={onCounterChange} />
+      <Counter callback={onCounterChange} initialCount={count} />
       <div className={styles.itemPrice}>{totalPrice.toLocaleString()} ₽</div>
-      <button className={styles.deleteBtn} title="Удалить">
+      <button onClick={onDeleteBtnClick} className={styles.deleteBtn} title="Удалить">
         +
       </button>
     </div>

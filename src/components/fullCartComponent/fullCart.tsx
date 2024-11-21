@@ -5,9 +5,29 @@ import { setFilterCategory } from '../../store/slices/filterSlice';
 import { RootState } from '../../store/store';
 import styles from './fullCart.module.scss';
 
+interface FoodValueInterface {
+  text: string;
+  value: number;
+}
+
+interface ProductInterface {
+  id: number;
+  title: string;
+  weight: number;
+  price: number;
+  imgSmall: string;
+  imgBig: string;
+  ingridients: string[];
+  nutritionalValue: FoodValueInterface[];
+  description: string;
+  category: string;
+  count: number;
+  ratio: number;
+}
+
 const FullCart = () => {
   const dispatch = useDispatch();
-  const { totalCount, totalPrice } = useSelector((store: RootState) => store.cart);
+  const { totalCount, totalPrice, products } = useSelector((store: RootState) => store.cart);
 
   const onMainPageLinkClick = () => {
     dispatch(setFilterCategory({ name: 'Все', filterKey: 'category' }));
@@ -29,9 +49,7 @@ const FullCart = () => {
       </div>
 
       <div className={styles.orderList}>
-        {[1, 2, 3].map((item) => (
-          <OrderListItem key={item} />
-        ))}
+        {products.length && products.map((product: ProductInterface) => <OrderListItem key={product.id} {...product} />)}
       </div>
 
       <div className={styles.total}>

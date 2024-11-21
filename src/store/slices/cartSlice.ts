@@ -62,10 +62,13 @@ export const cartSlice = createSlice({
       updateTotals(state);
       sessionStorage.setItem('cartData', JSON.stringify(state.products));
     },
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      state.products = state.products.filter((product) => product.id !== action.payload);
+    },
   },
 });
 
-export const { addToCart, updateProductCountAndPrice } = cartSlice.actions;
+export const { addToCart, updateProductCountAndPrice, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;
 
 function updateTotals(state: CartState) {
