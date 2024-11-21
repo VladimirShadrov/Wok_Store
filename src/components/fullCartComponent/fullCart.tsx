@@ -6,6 +6,7 @@ import { clearCart, setTotalPapams } from '../../store/slices/cartSlice';
 import { RootState } from '../../store/store';
 import styles from './fullCart.module.scss';
 import React from 'react';
+import { setProductCount, setProductsListWithChangedCounters } from '../../store/slices/productSlice';
 
 interface FoodValueInterface {
   text: string;
@@ -37,6 +38,13 @@ const FullCart = () => {
 
   const onClearBtnClick = () => {
     dispatch(clearCart());
+
+    if (products.length) {
+      products.forEach((product) => {
+        dispatch(setProductCount({ id: product.id, count: 1 }));
+        dispatch(setProductsListWithChangedCounters());
+      });
+    }
   };
 
   React.useEffect(() => {

@@ -38,6 +38,8 @@ const OrderListItem = ({ id, price, count, imgSmall, title }: ProductInterface) 
 
   const onDeleteBtnClick = () => {
     dispatch(removeProductFromCart(id));
+    dispatch(setProductCount({ id, count: 1 }));
+    dispatch(setProductsListWithChangedCounters());
   };
 
   React.useEffect(() => {
