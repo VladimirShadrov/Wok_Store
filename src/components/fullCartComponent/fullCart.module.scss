@@ -1,0 +1,109 @@
+@import '../../styles/variables.scss';
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  .basket-icon,
+  .clean-basket-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .basket-icon {
+    .title {
+      font-size: 28px;
+      line-height: 32px;
+
+      @media (max-width: 550px) {
+        font-size: 22px;
+        line-height: 24px;
+      }
+    }
+  }
+
+  .clean-basket-btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: $grey;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.2s;
+
+    &:hover {
+      background: $lightGrey;
+    }
+  }
+}
+
+.order-list {
+  margin-bottom: 12px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 36px;
+
+  .total-value {
+    flex-shrink: 0;
+
+    span {
+      font-weight: bold;
+      margin-left: 6px;
+    }
+  }
+
+  .total-price {
+    flex-shrink: 0;
+
+    span {
+      font-weight: bold;
+      color: $red;
+      margin-left: 6px;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .to-main-btn,
+  .pay-btn {
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    background: transparent;
+    transition: all 0.2s;
+  }
+
+  .to-main-btn {
+    color: $red;
+    border: 1px solid $red;
+
+    &:hover {
+      color: $red-hovered;
+      border: 1px solid $red-hovered;
+    }
+  }
+
+  .pay-btn {
+    color: $white;
+    background: $red;
+
+    &:hover {
+      background: $red-hovered;
+    }
+  }
+}

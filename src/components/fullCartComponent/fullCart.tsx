@@ -3,6 +3,7 @@ import OrderListItem from '../orderListItemComponent/orderListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilterCategory } from '../../store/slices/filterSlice';
 import { RootState } from '../../store/store';
+import styles from './fullCart.module.scss';
 
 const FullCart = () => {
   const dispatch = useDispatch();
@@ -13,42 +14,42 @@ const FullCart = () => {
   };
 
   return (
-    <div className="full">
-      <div className="head">
-        <div className="title">
-          <div className="basket-icon">
+    <div className={styles.full}>
+      <div className={styles.head}>
+        <div className={styles.title}>
+          <div className={styles.basketIcon}>
             <img src="src/assets/images/basket-black.svg" alt="image" />
-            <h2 className="title">Корзина</h2>
+            <h2 className={styles.title}>Корзина</h2>
           </div>
         </div>
-        <button className="clean-basket-btn">
-          <img className="trash-icon" src="src\assets\images\trash.svg" alt="image" />
-          <span className="clean-btn-text">Очистить корзину</span>
+        <button className={styles.cleanBasketBtn}>
+          <img className={styles.trashIcon} src="src\assets\images\trash.svg" alt="image" />
+          <span className={styles.cleanBtnText}>Очистить корзину</span>
         </button>
       </div>
 
-      <div className="order-list">
+      <div className={styles.orderList}>
         {[1, 2, 3].map((item) => (
           <OrderListItem key={item} />
         ))}
       </div>
 
-      <div className="total">
-        <div className="total-value">
+      <div className={styles.total}>
+        <div className={styles.totalValue}>
           Всего товаров:
           <span>{totalCount} шт.</span>
         </div>
-        <div className="total-price">
+        <div className={styles.totalPrice}>
           Сумма заказа:
           <span>{totalPrice.toLocaleString()} ₽</span>
         </div>
       </div>
 
-      <div className="actions">
+      <div className={styles.actions}>
         <Link to={'/'} onClick={onMainPageLinkClick}>
-          <button className="to-main-btn">На главную</button>
+          <button className={styles.toMainBtn}>На главную</button>
         </Link>
-        <button className="pay-btn">Оплатить</button>
+        <button className={styles.payBtn}>Оплатить</button>
       </div>
     </div>
   );
