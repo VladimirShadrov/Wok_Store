@@ -24,7 +24,7 @@ interface ProductInterface {
   ratio: number;
 }
 
-const OrderListItem = ({ id, price, count, imgSmall }: ProductInterface) => {
+const OrderListItem = ({ id, price, count, imgSmall, title }: ProductInterface) => {
   const [totalPrice, setTotalPrice] = React.useState(price);
   const dispatch = useDispatch();
 
@@ -42,8 +42,11 @@ const OrderListItem = ({ id, price, count, imgSmall }: ProductInterface) => {
 
   return (
     <div className={styles.orderItem}>
-      <div className={styles.itemImage}>
-        <img src={imgSmall} alt="image" />
+      <div className={styles.productInfo}>
+        <div className={styles.itemImage}>
+          <img src={imgSmall} alt="image" />
+        </div>
+        <p className={styles.title}>{title}</p>
       </div>
       <Counter callback={onCounterChange} initialCount={count} />
       <div className={styles.itemPrice}>{totalPrice.toLocaleString()} ₽</div>
