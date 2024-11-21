@@ -7,6 +7,7 @@ import { WokContextProvider } from './context/wokContext';
 import { store } from './store/store';
 import { Provider } from 'react-redux';
 import NotFoundPage from './pages/notFoundPage/notFoundPage';
+import OrderPage from './pages/orderPage/orderPage';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
     path: '/basket',
     element: <BasketPage />,
   },
+  {
+    path: '/order',
+    element: <OrderPage />,
+  },
+
   {
     path: '*',
     element: <NotFoundPage />,

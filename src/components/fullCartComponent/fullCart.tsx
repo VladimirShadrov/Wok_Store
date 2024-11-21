@@ -89,7 +89,9 @@ const FullCart = () => {
         <Link to={'/'} onClick={onMainPageLinkClick}>
           <button className={styles.toMainBtn}>На главную</button>
         </Link>
-        <button className={styles.payBtn}>Оплатить</button>
+        <Link to={'/order'}>
+          <button className={styles.payBtn}>Оплатить</button>
+        </Link>
       </div>
     </div>
   );
