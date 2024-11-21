@@ -32,6 +32,7 @@ type WokItemType = {
   nutritionalValue: FoodValueType[];
   description: string;
   category: string;
+  count: number;
   ratio: number;
 };
 
