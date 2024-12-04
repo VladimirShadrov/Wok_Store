@@ -1,0 +1,74 @@
+@import '../../styles/variables.scss';
+
+.search-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 400px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    order: 1;
+  }
+
+  .icon {
+    position: absolute;
+    left: 10px;
+    top: 14px;
+    width: 20px;
+    height: 20px;
+    background: url('/src/assets/images/search.svg') no-repeat center / contain;
+    opacity: 0.3;
+  }
+
+  .search-field {
+    padding: 12px 26px 12px 34px;
+    outline: none;
+    width: 100%;
+    border: 1px solid rgba($grey, 0.3);
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 22px;
+
+    &:focus {
+      border: 1px solid rgba($grey, 0.8);
+    }
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+
+    &:hover {
+      &::after,
+      &::before {
+        opacity: 0.5;
+      }
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background: #000;
+      opacity: 0.3;
+      transition: all 0.2s;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}

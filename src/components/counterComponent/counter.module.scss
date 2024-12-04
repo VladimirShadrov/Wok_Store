@@ -1,0 +1,34 @@
+@import '../../styles/variables.scss';
+
+.counter {
+  display: flex;
+  width: 130px;
+  height: 42px;
+  background: $lightGrey;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  .dec-btn,
+  .inc-btn {
+    width: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s;
+
+    &:hover {
+      background: $red;
+      color: $white;
+    }
+  }
+
+  .count {
+    flex-grow: 1;
+    text-align: center;
+    line-height: 42px;
+  }
+}

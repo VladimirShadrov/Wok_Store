@@ -1,0 +1,9 @@
+.main-title {
+  font-size: 36px;
+  line-height: 42px;
+
+  @media (max-width: 550px) {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
